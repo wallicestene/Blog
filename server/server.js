@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from "morgan";
-import fs from "fs";
+import blogsRoutes from "./routes/blogsRoutes.js";
 dotenv.config();
 // initializing the app
 const app = express();
@@ -25,3 +25,5 @@ const connectToDatabase = (connectionString, port) => {
     );
 };
 connectToDatabase(process.env.MONGODB_URI, process.env.PORT)
+// all Routes
+app.use(blogsRoutes)
