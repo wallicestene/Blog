@@ -23,9 +23,7 @@ const addBlog = (req, res) => {
       res.status(200).json(result);
     })
     .catch((error) => {
-      res
-        .status(500)
-        .json({ error: `Error occurred while adding the blog. ${error}` });
+      res.status(500).json({ error: `Error adding the blog. ${error}` });
     });
 };
 
@@ -43,9 +41,7 @@ const getOneBlog = (req, res) => {
       res.status(200).json(blog);
     })
     .catch((error) => {
-      res
-        .status(500)
-        .json({ error: `Error occurred while finding the blog. ${error}` });
+      res.status(500).json({ error: `Error finding the blog. ${error}` });
     });
 };
 
@@ -63,10 +59,25 @@ const updateBlog = (req, res) => {
         : res.status(200).json(updatedBlog);
     })
     .catch((error) => {
-      res
-        .status(500)
-        .json({ error: ` Error occurred while updating the blog. ${error}` });
+      res.status(500).json({ error: ` Error updating the blog. ${error}` });
+    });
+};
+
+// delete a blog
+const deleteBlog = (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.isObjectId(id)) {
+    res.status(404).json({ error: "Invalid id" });
+  }
+  Blogs.findByIdAndDelete(id)
+    .then((result) => {
+      return !result
+        ? res.status(400).json({ error: "No blog found with that id" })
+        : res.status(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: `Error deleting the blog. ${error}` });
     });
 };
 // export those functions
-export { getAllBlogs, getOneBlog, addBlog, updateBlog };
+export { getAllBlogs, getOneBlog, addBlog, updateBlog, deleteBlog };
