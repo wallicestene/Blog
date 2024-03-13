@@ -1,8 +1,8 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import validator from "validator";
 import bcryptjs from "bcryptjs";
 
-const Schema = Mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: {
@@ -23,7 +23,7 @@ const userSchema = new Schema({
 // static login method
 
 userSchema.statics.logIn = async function (email, password) {
-  if (!username || !email || !password) {
+  if (!email || !password) {
     throw Error("All fields must be filled");
   }
   const user = await this.findOne({ email });
@@ -62,3 +62,4 @@ userSchema.statics.signUp = async function (username, email, password) {
   //   creating the user
   return this.create({ username, email, password: hash });
 };
+export default mongoose.model("User", userSchema)

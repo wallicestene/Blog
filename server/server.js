@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import blogsRoutes from "./routes/blogsRoutes.js";
+import userRoutes from "./routes/usersRoutes.js";
 dotenv.config();
 // initializing the app
 const app = express();
@@ -27,3 +28,4 @@ const connectToDatabase = (connectionString, port) => {
 connectToDatabase(process.env.MONGODB_URI, process.env.PORT)
 // all Routes
 app.use(blogsRoutes)
+app.use(userRoutes)
