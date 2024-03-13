@@ -18,7 +18,7 @@ const addBlog = (req, res) => {
   if (!title || !author || !body) {
     throw new Error("Cannot add a blog without a title or author or content");
   }
-  Blogs.create(title, author, body)
+  Blogs.create({ title, author, body })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -30,7 +30,7 @@ const addBlog = (req, res) => {
 // get one blog by id
 const getOneBlog = (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.isObjectId(id)) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
   Blogs.findById(id)
@@ -47,12 +47,12 @@ const getOneBlog = (req, res) => {
 
 // update blog
 const updateBlog = (req, res) => {
-  const { title, author, body } = req.body;
+  const { title, body } = req.body;
   const { id } = req.params;
-  if (!mongoose.Types.isObjectId(id)) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
-  Blogs.findByIdAndUpdate(id, { title, author, body })
+  Blogs.findByIdAndUpdate(id, { title, body })
     .then((updatedBlog) => {
       return !updatedBlog
         ? res.status(404).json({ error: "No blog found with that id" })
@@ -66,14 +66,14 @@ const updateBlog = (req, res) => {
 // delete a blog
 const deleteBlog = (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.isObjectId(id)) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
   Blogs.findByIdAndDelete(id)
     .then((result) => {
       return !result
         ? res.status(400).json({ error: "No blog found with that id" })
-        : res.status(result);
+        : res.status(200).json(result);
     })
     .catch((error) => {
       res.status(500).json({ error: `Error deleting the blog. ${error}` });
