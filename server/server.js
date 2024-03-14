@@ -9,8 +9,8 @@ dotenv.config();
 const app = express();
 
 // middlewares
-app.use(morgan("dev"))
-app.use(express.json())
+app.use(morgan("dev"));
+app.use(express.json());
 // connecting to MongoDB
 const connectToDatabase = (connectionString, port) => {
   mongoose
@@ -25,7 +25,11 @@ const connectToDatabase = (connectionString, port) => {
       console.log(`Failed to connect to the database: ${error}`)
     );
 };
-connectToDatabase(process.env.MONGODB_URI, process.env.PORT)
+connectToDatabase(process.env.MONGODB_URI, process.env.PORT);
 // all Routes
-app.use(blogsRoutes)
-app.use(userRoutes)
+app.use(blogsRoutes);
+app.use(userRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found!" });
+});
