@@ -52,7 +52,7 @@ const updateBlog = (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
-  Blogs.findByIdAndUpdate(id, { title, body })
+  Blogs.findByIdAndUpdate(id, { title, body }, { new: true })
     .then((updatedBlog) => {
       return !updatedBlog
         ? res.status(404).json({ error: "No blog found with that id" })
