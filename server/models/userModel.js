@@ -60,6 +60,7 @@ userSchema.statics.signUp = async function (username, email, password) {
   const hash = await bcryptjs.hash(password, salt);
 
   //   creating the user
-  return this.create({ username, email, password: hash });
+  const user = await this.create({ username, email, password: hash });
+  return user;
 };
-export default mongoose.model("User", userSchema)
+export default mongoose.model("User", userSchema);
