@@ -13,7 +13,11 @@ const userLogin = (req, res) => {
   User.logIn(email, password)
     .then((user) => {
       const token = createToken(user._id);
-      res.status(200).json({email, token});
+      const userDetails = {
+        username: user.username,
+        email,
+      };
+      res.status(200).json({ ...userDetails, token });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
@@ -26,7 +30,11 @@ const userSignUp = (req, res) => {
   User.signUp(username, email, password)
     .then((user) => {
       const token = createToken(user._id);
-      res.status(200).json({username, email, token});
+      const userDetails = {
+        username,
+        email,
+      };
+      res.status(200).json({ ...userDetails, token });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
