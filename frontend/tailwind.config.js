@@ -51,6 +51,33 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'Primary': {
+          '50': '#edf4ff',
+          '100': '#deebff',
+          '200': '#c3daff',
+          '300': '#9fbfff',
+          '400': '#789bff',
+          '500': '#4b6bfb',
+          '600': '#3a4cf1',
+          '700': '#2d3bd5',
+          '800': '#2835ab',
+          '900': '#283487',
+          '950': '#181e4e',
+      },'Secondary': {
+        '50': '#f1f6fc',
+        '100': '#e6eef9',
+        '200': '#d2def3',
+        '300': '#b6c9eb',
+        '400': '#98ade1',
+        '500': '#7f91d5',
+        '600': '#6571c6',
+        '700': '#555fad',
+        '800': '#47508c',
+        '900': '#3e4671',
+        '950': '#141624',
+    },
+    
+      
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -70,6 +97,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        "Open-Sans": ["Open-Sans", " sans-serif"],
+        "Gotham-Bold": ["Gotham", "sans-serif"],
       },
     },
   },

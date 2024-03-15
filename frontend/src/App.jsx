@@ -1,9 +1,7 @@
-import { Button } from "./components/ui/button"
 
 const App = () => {
   return (
-    <div className=' text-xl'>App
-    <Button>Hello</Button>
+    <div className=' font-Gotham-Bold text-Primary-900'>App
     </div>
   )
 }
