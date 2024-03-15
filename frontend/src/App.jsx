@@ -1,11 +1,17 @@
-import { Button } from "./components/ui/button"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Layout from "./Layout";
 
 const App = () => {
   return (
-    <div className=' text-xl'>App
-    <Button>Hello</Button>
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index path="/" element={<HomePage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
