@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Blogs from "../models/blogsModel.js";
-
+import multer from "multer";
+import path from "path";
 // get all blog posts
 const getAllBlogs = (req, res) => {
   Blogs.find()
@@ -27,6 +28,20 @@ const addBlog = (req, res) => {
     });
 };
 
+// upload Blog image
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, "photo" + Date.now() + path.extname(file.originalname));
+  },
+});
+const uploadMiddleWare = multer({ storage });
+const uploadBlogImage = (req, res) => {
+  const { filename } = req.file;
+  res.status(200).json(filename)
+};
 // get one blog by id
 const getOneBlog = (req, res) => {
   const { id } = req.params;
@@ -80,4 +95,4 @@ const deleteBlog = (req, res) => {
     });
 };
 // export those functions
-export { getAllBlogs, getOneBlog, addBlog, updateBlog, deleteBlog };
+export { getAllBlogs, getOneBlog, addBlog, updateBlog, deleteBlog, uploadMiddleWare, uploadBlogImage };

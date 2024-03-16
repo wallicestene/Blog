@@ -11,6 +11,7 @@ const app = express();
 // middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+app.use("/uploads", express.static("./controllers/uploads") )
 // connecting to MongoDB
 const connectToDatabase = (connectionString, port) => {
   mongoose
