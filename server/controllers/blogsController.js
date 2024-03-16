@@ -40,7 +40,7 @@ const storage = multer.diskStorage({
 const uploadMiddleWare = multer({ storage });
 const uploadBlogImage = (req, res) => {
   const { filename } = req.file;
-  res.status(200).json(filename)
+  res.status(200).json(filename);
 };
 // get one blog by id
 const getOneBlog = (req, res) => {
@@ -95,4 +95,12 @@ const deleteBlog = (req, res) => {
     });
 };
 // export those functions
-export { getAllBlogs, getOneBlog, addBlog, updateBlog, deleteBlog, uploadMiddleWare, uploadBlogImage };
+export {
+  getAllBlogs,
+  getOneBlog,
+  addBlog,
+  updateBlog,
+  deleteBlog,
+  uploadMiddleWare,
+  uploadBlogImage,
+};
