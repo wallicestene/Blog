@@ -15,11 +15,11 @@ const getAllBlogs = (req, res) => {
 
 // adding a blog
 const addBlog = (req, res) => {
-  const { title, author, body } = req.body;
-  if (!title || !author || !body) {
-    throw new Error("Cannot add a blog without a title or author or content");
+  const { title, author, body, image, category } = req.body;
+  if (!title || !author || !body || image|| category) {
+    throw new Error("Cannot add a blog without a title or author or content or category or image");
   }
-  Blogs.create({ title, author, body })
+  Blogs.create({ title, author, body, image, category})
     .then((result) => {
       res.status(200).json(result);
     })
@@ -62,12 +62,12 @@ const getOneBlog = (req, res) => {
 
 // update blog
 const updateBlog = (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, image, category } = req.body;
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
-  Blogs.findByIdAndUpdate(id, { title, body }, { new: true })
+  Blogs.findByIdAndUpdate(id, { title, body ,image, category}, { new: true })
     .then((updatedBlog) => {
       return !updatedBlog
         ? res.status(404).json({ error: "No blog found with that id" })
