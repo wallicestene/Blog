@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import HeroImage from "/HeroImage.png";
+import Banner from "./Banner";
 const Hero = () => {
   return (
     <div>
@@ -12,8 +13,8 @@ const Hero = () => {
             alt="Her image"
           />
         </div>
-        <div className="absolute lg:w-1/2 w-11/12 top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">
-          <div className=" h-full  rounded-md bg-gray-50 flex items-center flex-row-reverse p-1">
+        <div className="absolute w-full grid place-items-center top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">
+          <div className=" h-full lg:w-1/2 w-11/12 rounded-md bg-gray-50 flex items-center flex-row-reverse p-1">
             <div className=" px-3 py-1 text-center bg-Primary-500 rounded-md text-white cursor-pointer">
               <span>Search</span>
             </div>
@@ -32,12 +33,19 @@ const Hero = () => {
             </div>
             <div>
               <ul className=" flex gap-x-5">
-                <li className=" border border-white py-1 px-3 rounded-md bg-Secondary-950/5 overflow-hidden backdrop-blur-md">Design</li>
-                <li className=" border border-white py-1 px-3 rounded-md  bg-Secondary-950/5 overflow-hidden backdrop-blur-md">Technology</li>
-                <li className=" border border-white py-1 px-3 rounded-md  bg-Secondary-950/5 overflow-hidden backdrop-blur-md">Coding</li>
+                <li className=" border border-white py-1 px-3 rounded-md bg-Secondary-950/5 overflow-hidden backdrop-blur-md">
+                  Design
+                </li>
+                <li className=" border border-white py-1 px-3 rounded-md  bg-Secondary-950/5 overflow-hidden backdrop-blur-md">
+                  Technology
+                </li>
+                <li className=" border border-white py-1 px-3 rounded-md  bg-Secondary-950/5 overflow-hidden backdrop-blur-md">
+                  Coding
+                </li>
               </ul>
             </div>
           </div>
+          <Banner />
         </div>
       </section>
     </div>
