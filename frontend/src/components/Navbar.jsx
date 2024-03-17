@@ -8,7 +8,7 @@ import NavbarMobile from "./NavbarMobile";
 const Navbar = () => {
     const [showNavMobile, setShowNavMobile] = useState(false)
   return (
-    <div className=" relative flex items-center justify-between h-12 px-4 bg-white shadow">
+    <div className="fixed z-10 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow">
       <div className="nav-left w-full">
         <Logo />
       </div>
