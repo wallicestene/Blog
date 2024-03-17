@@ -10,6 +10,10 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
+    image:{
+      type: String,
+      required: true, 
+    },
     body: {
       type: [
         {
@@ -25,6 +29,10 @@ const blogSchema = new Schema(
       ],
       required: true,
     },
+    category: {
+      type: String,
+      required: true,
+    }
   },{
     timestamps: true,
   }

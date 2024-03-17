@@ -1,5 +1,4 @@
 import Logo from "@/assets/Logo";
-import { Search } from "@mui/icons-material";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import NavbarMobile from "./NavbarMobile";
 const Navbar = () => {
     const [showNavMobile, setShowNavMobile] = useState(false)
   return (
-    <div className=" relative flex items-center justify-between h-12 px-4 bg-white shadow">
+    <div className="fixed z-10 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow ">
       <div className="nav-left w-full">
         <Logo />
       </div>
@@ -29,18 +28,6 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
-      </div>
-      <div className="nav-right hidden lg:block md:block w-full">
-        <div className=" h-full w-fit rounded bg-gray-50 flex items-center">
-          <input
-            className=" w-full h-full outline-none bg-transparent indent-2 border-none"
-            type="text"
-            placeholder="Search"
-          />
-          <div className=" p-1">
-            <Search />
-          </div>
-        </div>
       </div>
       <div className=" lg:hidden md:hidden" onClick={() => setShowNavMobile(!showNavMobile)}>
         {

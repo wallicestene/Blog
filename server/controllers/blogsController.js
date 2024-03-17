@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Blogs from "../models/blogsModel.js";
-
+import multer from "multer";
+import path from "path";
 // get all blog posts
 const getAllBlogs = (req, res) => {
   Blogs.find()
@@ -14,11 +15,11 @@ const getAllBlogs = (req, res) => {
 
 // adding a blog
 const addBlog = (req, res) => {
-  const { title, author, body } = req.body;
-  if (!title || !author || !body) {
-    throw new Error("Cannot add a blog without a title or author or content");
+  const { title, author, body, image, category } = req.body;
+  if (!title || !author || !body || image|| category) {
+    throw new Error("Cannot add a blog without a title or author or content or category or image");
   }
-  Blogs.create({ title, author, body })
+  Blogs.create({ title, author, body, image, category})
     .then((result) => {
       res.status(200).json(result);
     })
@@ -27,6 +28,20 @@ const addBlog = (req, res) => {
     });
 };
 
+// upload Blog image
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, "photo" + Date.now() + path.extname(file.originalname));
+  },
+});
+const uploadMiddleWare = multer({ storage });
+const uploadBlogImage = (req, res) => {
+  const { filename } = req.file;
+  res.status(200).json(filename);
+};
 // get one blog by id
 const getOneBlog = (req, res) => {
   const { id } = req.params;
@@ -47,12 +62,12 @@ const getOneBlog = (req, res) => {
 
 // update blog
 const updateBlog = (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, image, category } = req.body;
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
-  Blogs.findByIdAndUpdate(id, { title, body }, { new: true })
+  Blogs.findByIdAndUpdate(id, { title, body ,image, category}, { new: true })
     .then((updatedBlog) => {
       return !updatedBlog
         ? res.status(404).json({ error: "No blog found with that id" })
@@ -80,4 +95,12 @@ const deleteBlog = (req, res) => {
     });
 };
 // export those functions
-export { getAllBlogs, getOneBlog, addBlog, updateBlog, deleteBlog };
+export {
+  getAllBlogs,
+  getOneBlog,
+  addBlog,
+  updateBlog,
+  deleteBlog,
+  uploadMiddleWare,
+  uploadBlogImage,
+};

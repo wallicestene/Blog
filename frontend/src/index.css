@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+:root {
+  --white: #fff;
+  --blue: #0069ff;
+}
 
 @tailwind base;
 @tailwind components;
@@ -81,4 +85,9 @@
   src: url('./assets/Gotham-Font/Gotham-Bold.otf');
   font-weight: normal;
   font-style: normal;
+}
+.imgContainer{
+  height: 480px;
+  clip-path: ellipse(98% 100% at 50% 0%);
+
 }
