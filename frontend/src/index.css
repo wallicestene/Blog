@@ -87,9 +87,7 @@
   font-style: normal;
 }
 .imgContainer{
-  height: 400px;
-  /* border-radius: 0 0 50% 50%; */
-  background: #0069ff;
-  clip-path: ellipse(96% 100% at 50% 0%);
+  height: 480px;
+  clip-path: ellipse(98% 100% at 50% 0%);
 
 }
