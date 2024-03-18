@@ -6,7 +6,7 @@ import { Avatar } from "@mui/material";
 const RecentBlogs = () => {
   const blogs = [1, 2, 3];
   return (
-    <div className=" lg:mt-[220px] md:mt-[360] mt-[370px] mb-5 w-[75%] mx-auto ">
+    <div className=" lg:mt-[240px] md:mt-[370] mt-[370px] mb-5 w-[75%] mx-auto ">
       <div className=" flex items-center justify-between my-10">
         <div>
           <h2 className="text-xl font-bold font-Gotham-Bold">Recent Blogs</h2>
@@ -25,11 +25,11 @@ const RecentBlogs = () => {
           </button>
         </div>
       </div>
-      <div className=" grid grid-cols-3 gap-4 place-items-center w-11/12 mx-auto">
+      <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-5  gap-x-4  lg:w-11/12 w-full mx-auto">
         {blogs.map((blog, index) => (
           <div
             key={index}
-            className="relative h-80 w-full rounded-lg overflow-hidden"
+            className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]"
           >
             <img
               src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -37,13 +37,13 @@ const RecentBlogs = () => {
               className=" object-cover w-full h-full"
             />
             <div className=" absolute bottom-5 left-2 right-2 p-2 z-10 text-white">
-              <h2 className=" my-3 text-lg tracking-wide font-Gotham-Bold font-bold">
+              <h2 className=" my-3 text-2xl tracking-wide font-Gotham-Bold font-bold">
                 Future of work
               </h2>
               <p className="  text-sm tracking-wide leading-6 font-Open-Sans">
                 Majority of people will work in jobs that don't exist today.
               </p>
-              <div className=" flex items-center justify-between text-[0.75rem] mt-3">
+              <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
                 <div className=" flex items-center gap-1">
                   <Avatar
                     sx={{
