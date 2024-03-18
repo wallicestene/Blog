@@ -27,7 +27,7 @@ const Hero = () => {
               <Search />
             </div>
           </div>
-          <div className="  text-white flex gap-x-5 my-5">
+          <div className="  text-white flex gap-x-5 my-5 flex-wrap">
             <div className="">
               <p>Popular Categories:</p>
             </div>

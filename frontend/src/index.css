@@ -91,3 +91,30 @@
   clip-path: ellipse(98% 100% at 50% 0%);
 
 }
+/* For small devices (phones, 576px and up) */
+@media (min-width: 576px) {
+  .imgContainer {
+    height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .imgContainer {
+    height: 400px; /* Adjust height for medium screens */
+  }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .imgContainer {
+    height: 480px; /* Retain original height for larger screens */
+  }
+}
+
+/* For extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .imgContainer {
+    height: 600px; /* Adjust height for extra large screens */
+  }
+}
