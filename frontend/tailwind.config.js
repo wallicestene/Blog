@@ -101,6 +101,7 @@ module.exports = {
       fontFamily: {
         "Open-Sans": ["Open-Sans", " sans-serif"],
         "Gotham-Bold": ["Gotham", "sans-serif"],
+        "Gotham-Light": ["Gotham-Light", "sans-serif"],
       },
     },
   },
