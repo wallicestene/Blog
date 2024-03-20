@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import HeroImage from "/HeroImage.png";
+// import HeroImage from "/HeroImage.png";
 import Banner from "./Banner";
 const Hero = () => {
   return (
@@ -7,11 +7,13 @@ const Hero = () => {
       <section className="hero relative">
         <div className="imgContainer relative overflow-hidden">
           <img
-            src={HeroImage}
+            src={"https://images.unsplash.com/photo-1525540810550-5032f5d191b1?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
             className=" w-screen h-screen object-cover object-center"
             loading="lazy"
             alt="Her image"
           />
+        <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[20%]" />
+          
         </div>
         <div className="absolute w-full grid place-items-center top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">
           <div className=" h-full lg:w-1/2 w-11/12 rounded-md bg-gray-50 flex items-center flex-row-reverse p-1">
@@ -27,12 +29,10 @@ const Hero = () => {
               <Search />
             </div>
           </div>
-          <div className="  text-white flex gap-x-5 my-5">
-            <div className="">
-              <p>Popular Categories:</p>
-            </div>
+          <div className="  text-white my-5 flex-wrap">
+    
             <div>
-              <ul className=" flex gap-x-5">
+              <ul className=" flex gap-x-5 flex-wrap">
                 <li className=" border border-white py-1 px-3 rounded-md bg-Secondary-950/5 overflow-hidden backdrop-blur-md">
                   Design
                 </li>
