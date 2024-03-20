@@ -29,12 +29,10 @@ const Hero = () => {
               <Search />
             </div>
           </div>
-          <div className="  text-white flex gap-x-5 my-5 flex-wrap">
-            <div className="">
-              <p>Popular Categories:</p>
-            </div>
+          <div className="  text-white my-5 flex-wrap">
+    
             <div>
-              <ul className=" flex gap-x-5">
+              <ul className=" flex gap-x-5 flex-wrap">
                 <li className=" border border-white py-1 px-3 rounded-md bg-Secondary-950/5 overflow-hidden backdrop-blur-md">
                   Design
                 </li>
