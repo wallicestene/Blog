@@ -6,7 +6,7 @@ import { Avatar } from "@mui/material";
 const RecentBlogs = () => {
   const blogs = [1, 2, 3];
   return (
-    <div className=" lg:mt-[240px] md:mt-[370] mt-[370px] mb-5 w-[75%] mx-auto ">
+    <div className=" lg:mt-[240px] md:mt-[370] mt-[370px] mb-5 lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
       <div className=" flex items-center justify-between my-10">
         <div>
           <h2 className="text-xl font-bold font-Gotham-Bold">Recent Blogs</h2>
