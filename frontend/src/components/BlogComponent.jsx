@@ -14,7 +14,7 @@ const BlogComponent = ({img}) => {
         <h2 className=" my-3 text-2xl tracking-wide font-Gotham-Bold font-bold">
           Future of work
         </h2>
-        <p className="  text-sm tracking-wide leading-6 font-Open-Sans">
+        <p className="  text-[0.8rem] tracking-wide font-Gotham-Light">
           Majority of people will work in jobs that don't exist today.
         </p>
         <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
@@ -32,6 +32,9 @@ const BlogComponent = ({img}) => {
           <p>17 May</p>
         </div>
       </div>
+      <div className=" absolute z-10 top-2 left-2 bg-Primary-100/80 px-3 py-1 rounded-md text-Primary-600 font-Open-Sans inline-block tracking-wider text-[0.8rem]">
+            <span>Technology</span>
+          </div>
       <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
     </div>
   );

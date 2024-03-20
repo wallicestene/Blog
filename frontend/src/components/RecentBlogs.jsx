@@ -6,8 +6,8 @@ import BlogComponent from "./BlogComponent";
 const RecentBlogs = () => {
   const blogs = [1, 2, 3];
   return (
-    <div className=" lg:mt-[240px] md:mt-[370] mt-[370px] lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
-      <div className=" flex items-center justify-between my-10">
+    <div className=" lg:mt-[240px] my md:mt-[370] mt-[360px] lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
+      <div className=" flex items-center justify-between my-5">
         <div>
           <h2 className="text-xl font-bold font-Gotham-Bold">Recent Blogs</h2>
           <p className=" font-Open-Sans text-sm tracking-wide">

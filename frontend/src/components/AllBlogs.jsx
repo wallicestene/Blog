@@ -5,7 +5,7 @@ const AllBlogs = () => {
     const blogs = [1, 2, 3,4,5,6,7,8,9];
     return (
       <div className="lg:w-[75%] md:w-[90%] w-full p-5 mx-auto space-y-4">
-        <div className="my-10">
+        <div className="my-5">
           <div>
             <h2 className="text-xl font-bold font-Gotham-Bold">All Blogs</h2>
             <p className=" font-Open-Sans text-sm tracking-wide">

@@ -13,7 +13,7 @@ const Banner = () => {
           loading="lazy"
         />
         <div className=" absolute bottom-5 left-2 z-10 p-2 space-y-5">
-          <div className=" bg-Primary-500 px-3 py-1 rounded-md text-white font-Open-Sans inline-block">
+          <div className=" bg-Primary-500 px-3 py-1 rounded-md text-white font-Open-Sans inline-block tracking-wide">
             <span>Technology</span>
           </div>
           <h1 className=" font-Gotham-Bold text-3xl font-bold text-white">
