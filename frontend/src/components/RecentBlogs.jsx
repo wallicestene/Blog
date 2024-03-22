@@ -1,10 +1,14 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 
 import { ArrowForward } from "@mui/icons-material";
 import BlogComponent from "./BlogComponent";
+import { Alert } from "@mui/material";
+import BlogSkeleton from "./BlogSkeleton";
+import { useState } from "react";
 
-const RecentBlogs = () => {
-  const blogs = [1, 2, 3];
+const RecentBlogs = ({ data, isLoading, error }) => {
+  const [skeletons] = useState([1, 2, 3]);
   return (
     <div className=" lg:mt-[240px] my md:mt-[370] mt-[360px] lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
       <div className=" flex items-center justify-between my-5">
@@ -25,10 +29,23 @@ const RecentBlogs = () => {
           </button>
         </div>
       </div>
+
+      {error && (
+        <div>
+          <Alert severity="error">{error}</Alert>
+        </div>
+      )}
+
       <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-5  gap-x-4  lg:w-11/12 w-full mx-auto">
-        {blogs.map((blog, index) => (
-         <BlogComponent key={index} img="https://images.unsplash.com/photo-1686163812333-391a9f514ce0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
-        ))}
+        {isLoading &&
+          skeletons.map((skeleton) => <BlogSkeleton key={skeleton} />)}
+        {data?.length > 0 && !isLoading && (
+          <>
+            {data?.slice(0, 3).map((blog, index) => (
+              <BlogComponent key={index} blogData={blog} />
+            ))}{" "}
+          </>
+        )}
       </div>
     </div>
   );

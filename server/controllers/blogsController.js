@@ -16,7 +16,7 @@ const getAllBlogs = (req, res) => {
 // adding a blog
 const addBlog = (req, res) => {
   const { title, author, body, image, category } = req.body;
-  if (!title || !author || !body || image|| category) {
+  if (!title || !author || !body || !image|| !category) {
     throw new Error("Cannot add a blog without a title or author or content or category or image");
   }
   Blogs.create({ title, author, body, image, category})
