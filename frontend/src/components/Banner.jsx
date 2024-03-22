@@ -11,12 +11,12 @@ const Banner = ({ data, isLoading, error }) => {
           <Skeleton className=" absolute top-0 left-0  w-full h-full bg-gray-900" />
           <div className=" absolute bottom-5 left-0 p-5 flex items-end justify-between w-full">
             <div className=" space-y-5">
-              <Skeleton className=" w-40 h-6 bg-gray-900" />
-              <Skeleton className="  w-56 h-7 bg-gray-900" />
+              <Skeleton className=" w-40 h-6 bg-gray-800" />
+              <Skeleton className="  w-56 h-7 bg-gray-800" />
               <div className=" flex items-center space-x-4">
-                <Skeleton className="  w-12 h-12 rounded-full bg-gray-900" />
-                <Skeleton className=" w-32 h-3 bg-gray-900" />
-                <Skeleton className=" w-28 h-3 bg-gray-900" />
+                <Skeleton className="  w-12 h-12 rounded-full bg-gray-800" />
+                <Skeleton className=" w-32 h-3 bg-gray-800" />
+                <Skeleton className=" w-28 h-3 bg-gray-800" />
               </div>
             </div>
           </div>

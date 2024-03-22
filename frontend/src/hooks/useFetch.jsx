@@ -18,11 +18,11 @@ const useFetch = (url) => {
           }
         })
         .then((data) => {
-          setData(data);
-          setIsLoading(false);
+        //   setData(data);
+          setIsLoading(true);
           setError(null);
         })
-        .catch((error) => {
+    .catch((error) => {
           setError(error.message);
           setIsLoading(false);
         });
