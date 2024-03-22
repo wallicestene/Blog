@@ -8,6 +8,7 @@ const BlogComponent = ({img}) => {
       <img
         src={img}
         alt=""
+        loading="lazy"
         className=" object-cover w-full h-full"
       />
       <div className=" absolute bottom-5 left-2 right-2 p-2 z-10 text-white">

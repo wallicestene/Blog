@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import cors from "cors"
 import blogsRoutes from "./routes/blogsRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
 dotenv.config();
@@ -11,6 +12,7 @@ const app = express();
 // middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 app.use("/uploads", express.static("./uploads") )
 // connecting to MongoDB
 const connectToDatabase = (connectionString, port) => {
