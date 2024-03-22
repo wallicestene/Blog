@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Search } from "lucide-react";
 // import HeroImage from "/HeroImage.png";
 import Banner from "./Banner";
-const Hero = () => {
+const Hero = ( { data, isLoading, error }) => {
   return (
     <div>
       <section className="hero relative">
@@ -45,7 +46,7 @@ const Hero = () => {
               </ul>
             </div>
           </div>
-          <Banner />
+          <Banner data={data}  isLoading={isLoading} error={error}/>
         </div>
       </section>
     </div>
