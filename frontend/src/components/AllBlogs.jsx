@@ -3,6 +3,7 @@
 import { useState } from "react";
 import BlogComponent from "./BlogComponent";
 import BlogSkeleton from "./BlogSkeleton";
+import { Alert } from "@mui/material";
 
 const AllBlogs = ({ data, isLoading, error }) => {
   const [skeletons] = useState([1, 2, 3, 4, 5]);
@@ -30,8 +31,14 @@ const AllBlogs = ({ data, isLoading, error }) => {
           </>
         )}
       </div>
+
+      {error && (
+        <div>
+          <Alert severity="error">{error}</Alert>
+        </div>
+      )}
       <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-5  gap-x-4 w-full ">
-      {isLoading &&
+        {isLoading &&
           skeletons
             .slice(2, skeletons.length)
             .map((skeleton) => <BlogSkeleton key={skeleton} />)}

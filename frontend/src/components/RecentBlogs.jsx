@@ -8,7 +8,7 @@ import BlogSkeleton from "./BlogSkeleton";
 import { useState } from "react";
 
 const RecentBlogs = ({ data, isLoading, error }) => {
-  const [skeletons] = useState([1,2,3])
+  const [skeletons] = useState([1, 2, 3]);
   return (
     <div className=" lg:mt-[240px] my md:mt-[370] mt-[360px] lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
       <div className=" flex items-center justify-between my-5">
@@ -37,7 +37,8 @@ const RecentBlogs = ({ data, isLoading, error }) => {
       )}
 
       <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-5  gap-x-4  lg:w-11/12 w-full mx-auto">
-        {isLoading && (skeletons.map((skeleton) => <BlogSkeleton key={skeleton}/>))}
+        {isLoading &&
+          skeletons.map((skeleton) => <BlogSkeleton key={skeleton} />)}
         {data?.length > 0 && !isLoading && (
           <>
             {data?.slice(0, 3).map((blog, index) => (
