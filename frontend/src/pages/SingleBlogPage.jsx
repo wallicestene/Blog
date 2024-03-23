@@ -14,9 +14,9 @@ const SingleBlogPage = () => {
         <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
           <span>{data?.category}</span>
         </div>
-        <h2 className=" my-3 text-2xl tracking-wide font-Gotham-Bold">
+        <h1 className=" my-3 text-2xl tracking-wide font-Gotham-Bold">
           {data?.title}
-        </h2>
+        </h1>
         <div className=" flex items-center space-x-4 text-gray-500 text-[0.75rem] mt-3 font-Gotham-Light tracking-wide font-bold">
           <div className=" flex items-center gap-2">
             <Avatar
@@ -30,12 +30,26 @@ const SingleBlogPage = () => {
           <p>{moment(data?.createdAt).format("Do MMM YYYY")}</p>
         </div>
       </div>
-      <div className="singleMid w-11/12 h-screen">
-        <img src={data.image} alt="" className="w-full h-[90%] object-cover object-center" />
+      <div className="singleMid lg:w-11/12 w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
+        <img
+          src={data.image}
+          loading="lazy"
+          alt=""
+          className="w-full h-full object-cover object-center"
+        />
       </div>
       <div className="singleBottom">
         <article>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia accusamus quis reiciendis quae omnis? Harum rem est, beatae tempora voluptate culpa facilis fugiat distinctio necessitatibus ipsam reprehenderit ipsum, magnam deserunt!
+          <div className=" w-full space-x-3">
+            {data.body?.map((bodyItem, index) => (
+              <div key={index} className=" space-y-1">
+                <h1 className="text-xl mt-2 leading-7 font-Gotham-Bold text-Secondary-950">
+                  {bodyItem.heading}
+                </h1>
+                <p className=" font-Open-Sans text-md text-Primary-950">{bodyItem.paragraph}</p>
+              </div>
+            ))}
+          </div>
         </article>
       </div>
     </div>
