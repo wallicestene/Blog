@@ -14,10 +14,12 @@ const Banner = ({ data, isLoading, error }) => {
     // initial call
     randomBannerData();
     if (data.length > 1) {
-      const intervalId = setInterval(randomBannerData, 10000);
+      const intervalId = setInterval(randomBannerData, 60000);
       return () => clearInterval(intervalId); // clean up on unmount
     }
   }, [data, data.length]);
+
+
   return (
     <div className="relative h-[400px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-hidden mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
       {isLoading && (

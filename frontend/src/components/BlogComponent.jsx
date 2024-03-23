@@ -2,10 +2,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Avatar } from "@mui/material";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const BlogComponent = ({blogData}) => {
   return (
     <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+      <Link to ={`/blogs/single-blog/${blogData?._id}`}>
       <img
         src={blogData?.image}
         alt=""
@@ -38,6 +40,7 @@ const BlogComponent = ({blogData}) => {
             <span>Technology</span>
           </div>
       <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
+      </Link>
     </div>
   );
 };
