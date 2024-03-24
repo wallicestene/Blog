@@ -15,6 +15,7 @@ const userLogin = (req, res) => {
       const token = createToken(user._id);
       const userDetails = {
         username: user.username,
+        profile: user.profile,
         email,
       };
       res.status(200).json({ ...userDetails, token });
@@ -26,12 +27,13 @@ const userLogin = (req, res) => {
 
 // signUp user
 const userSignUp = (req, res) => {
-  const { username, email, password } = req.body;
-  User.signUp(username, email, password)
+  const { username, profile, email, password } = req.body;
+  User.signUp(username, profile, email, password)
     .then((user) => {
       const token = createToken(user._id);
       const userDetails = {
         username,
+        profile,
         email,
       };
       res.status(200).json({ ...userDetails, token });

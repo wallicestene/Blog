@@ -9,6 +9,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  profile: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
@@ -39,7 +42,12 @@ userSchema.statics.logIn = async function (email, password) {
 
 // static signUp method
 
-userSchema.statics.signUp = async function (username, email, password) {
+userSchema.statics.signUp = async function (
+  username,
+  profile,
+  email,
+  password
+) {
   if (!username || !email || !password) {
     throw Error("All fields must be filled");
   }
@@ -60,7 +68,7 @@ userSchema.statics.signUp = async function (username, email, password) {
   const hash = await bcryptjs.hash(password, salt);
 
   //   creating the user
-  const user = await this.create({ username, email, password: hash });
+  const user = await this.create({ username, profile, email, password: hash });
   return user;
 };
 export default mongoose.model("User", userSchema);
