@@ -23,11 +23,11 @@ const SignupPage = () => {
     e.preventDefault();
     axios
       .post("http://localhost:3000/signUp", {
-        ...userDetails
+        ...userDetails,
       })
       .then((result) => result.data)
       .then((user) => {
-        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user.token));
       })
       .catch((err) => {
         alert(err.response.data.error);
