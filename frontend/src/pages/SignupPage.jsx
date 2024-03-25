@@ -3,21 +3,28 @@ import { Add } from "@mui/icons-material";
 
 const SignupPage = () => {
   return (
-    <div className=" mt-[47px] grid  place-items-center w-full">
-      <div className=" h-full flex">
-        <div className="signUpRight relative border border-black w-full h-full">
-          <div className=" h-full w-full">
+    <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
+      <div className=" lg:h-[85%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
+        <div className="signUpRight relative  w-full h-full ">
+          <div className="relative h-full w-full  overflow-hidden rounded-xl ">
             <img
               src="/HeroImage.png"
-              className=" h-full w-full object-cover object-center"
+              className=" h-full w-full object-cover object-center "
               alt="Sign up image"
             />
+            <div className=" absolute top-0 right-0 bg-Secondary-900/60 h-full w-full"/>
           </div>
-          <div className=" absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full text-center text-white text-2xl text-c font-Gotham-Bold">
-            <h1>Welcome to the MetaBlog</h1>
+          <div className=" absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full text-center text-white">
+            <h1 className=" text-2xl font-Gotham-Bold">
+              Welcome to the MetaBlog
+            </h1>
+            <p className=" font-Gotham-Light text-sm">
+              Empowering Next-Generation Content Creation
+            </p>
           </div>
+          
         </div>
-        <div className="sinUpLeft border border-Primary-500 w-full h-full px-6 py-4 ">
+        <div className="sinUpLeft  w-full h-full p-4  ">
           <div className="text-center">
             <h1 className=" text-2xl font-Gotham-Bold ">
               Welcome to the MetaBlog
@@ -43,8 +50,8 @@ const SignupPage = () => {
               </div>
             </div>
           </div>
-          <div className=" w-full flex flex-col items-center">
-            <form className=" mt-5 w-[80%] flex flex-col">
+          <div className=" w-full flex flex-col items-center font-Open-Sans tracking-wide">
+            <form className=" mt-3 w-[80%] flex flex-col">
               <label htmlFor="username">
                 Username <br />
                 <input
@@ -53,35 +60,33 @@ const SignupPage = () => {
                   name="username"
                   id="username"
                   required
-                  className=" outline-none border-b-2 border-Primary-600 h-10  w-full "
+                  className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
               <br />
               <label htmlFor="email" className="">
-                Email address: <br />
+                Email address <br />
                 <input
                   type="email"
                   id="email"
                   placeholder="Email Address"
                   required
-                  className=" outline-none border-b-2 border-Primary-600 h-10   w-full"
+                  className=" outline-none border-b-2 border-Primary-600 h-8   w-full"
                 />
               </label>
               <br />
               <label htmlFor="password">
-                Email address:
+                Password
                 <br />
                 <input
                   type="password"
                   id="password"
                   placeholder="Password"
-                  className=" outline-none border-b-2 border-Primary-600 h-10  w-full "
+                  className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
               <br />
-              <Button className="">
-                Sign up
-              </Button>
+              <Button className="">Sign up</Button>
             </form>
           </div>
         </div>
