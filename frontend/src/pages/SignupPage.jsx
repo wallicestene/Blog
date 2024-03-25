@@ -1,7 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { Add } from "@mui/icons-material";
+import axios from "axios";
+import { useState } from "react";
 
 const SignupPage = () => {
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    profile: "",
+    email: "",
+    password: "",
+  });
+  const handleOnchange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prevDetails) => {
+      return {
+        ...prevDetails,
+        [name]: value,
+      };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/signUp", {
+        ...userDetails
+      })
+      .then((result) => result.data)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((err) => {
+        alert(err.response.data.error);
+      });
+  };
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[85%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
@@ -12,7 +43,7 @@ const SignupPage = () => {
               className=" h-full w-full object-cover object-center "
               alt="Sign up image"
             />
-            <div className=" absolute top-0 right-0 bg-Secondary-900/60 h-full w-full"/>
+            <div className=" absolute top-0 right-0 bg-Secondary-900/60 h-full w-full" />
           </div>
           <div className=" absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full text-center text-white">
             <h1 className=" text-2xl font-Gotham-Bold">
@@ -22,7 +53,6 @@ const SignupPage = () => {
               Empowering Next-Generation Content Creation
             </p>
           </div>
-          
         </div>
         <div className="sinUpLeft  w-full h-full p-4  ">
           <div className="text-center">
@@ -51,7 +81,10 @@ const SignupPage = () => {
             </div>
           </div>
           <div className=" w-full flex flex-col items-center font-Open-Sans tracking-wide">
-            <form className=" mt-3 w-[80%] flex flex-col">
+            <form
+              className=" mt-3 w-[80%] flex flex-col"
+              onSubmit={handleSubmit}
+            >
               <label htmlFor="username">
                 Username <br />
                 <input
@@ -60,6 +93,8 @@ const SignupPage = () => {
                   name="username"
                   id="username"
                   required
+                  value={userDetails.username}
+                  onChange={handleOnchange}
                   className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
@@ -69,8 +104,11 @@ const SignupPage = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   placeholder="Email Address"
                   required
+                  value={userDetails.email}
+                  onChange={handleOnchange}
                   className=" outline-none border-b-2 border-Primary-600 h-8   w-full"
                 />
               </label>
@@ -81,7 +119,10 @@ const SignupPage = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   placeholder="Password"
+                  value={userDetails.password}
+                  onChange={handleOnchange}
                   className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
