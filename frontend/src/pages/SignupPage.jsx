@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Add } from "@mui/icons-material";
+import { Avatar } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
@@ -32,7 +33,22 @@ const SignupPage = () => {
       .catch((err) => {
         alert(err.response.data.error);
       });
+      
   };
+  const uploadProfile = (e) => {
+    const { files } = e.target;
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    axios
+      .post("http://localhost:3000/blogs/image-upload", formData)
+      .then((response) => response.data)
+      .then((image) => {
+        setUserDetails((prevDetails) => {
+          return { ...prevDetails, profile: image };
+        });
+      });
+  };
+  console.log(userDetails);
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[85%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
@@ -66,18 +82,29 @@ const SignupPage = () => {
           </div>
           <div className="w-full  grid place-items-center my-3">
             <div className="relative overflow-hidden">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1710548651496-59502bba8e80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className=" h-12 w-12 rounded-full object-cover"
-                alt="Profile"
+              <Avatar
+                sx={{
+                  height: "3rem",
+                  width: "3rem",
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+                src={`http://localhost:3000/uploads/${userDetails.profile}`}
               />
-              <div className="  absolute bottom-0 -right-0 z-10 bg-white rounded-full h-5 w-5 grid place-items-center cursor-pointer">
+              <label className="  absolute bottom-0 -right-0 z-10 bg-white rounded-full h-5 w-5 grid place-items-center cursor-pointer">
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  onChange={uploadProfile}
+                  className=" hidden"
+                />
                 <Add
                   sx={{
                     fontSize: "1rem",
                   }}
                 />
-              </div>
+              </label>
             </div>
           </div>
           <div className=" w-full flex flex-col items-center font-Open-Sans tracking-wide">
