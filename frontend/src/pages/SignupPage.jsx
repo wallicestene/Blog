@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Add } from "@mui/icons-material";
-import { Avatar } from "@mui/material";
+import { Alert, Avatar } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   const [userDetails, setUserDetails] = useState({
@@ -11,6 +12,7 @@ const SignupPage = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
   const handleOnchange = (e) => {
     const { name, value } = e.target;
     setUserDetails((prevDetails) => {
@@ -26,14 +28,15 @@ const SignupPage = () => {
       .post("http://localhost:3000/signUp", {
         ...userDetails,
       })
-      .then((result) => result.data)
+      .then((response) => response.data)
       .then((user) => {
+        console.log(user);
         localStorage.setItem("user", JSON.stringify(user.token));
+        setError(null);
       })
       .catch((err) => {
-        alert(err.response.data.error);
+        setError(err.response.data.error);
       });
-      
   };
   const uploadProfile = (e) => {
     const { files } = e.target;
@@ -48,10 +51,9 @@ const SignupPage = () => {
         });
       });
   };
-  console.log(userDetails);
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
-      <div className=" lg:h-[85%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
+      <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
         <div className="signUpRight relative  w-full h-full ">
           <div className="relative h-full w-full  overflow-hidden rounded-xl ">
             <img
@@ -70,14 +72,14 @@ const SignupPage = () => {
             </p>
           </div>
         </div>
-        <div className="sinUpLeft  w-full h-full p-4  ">
+        <div className="sinUpLeft  w-full h-full p-4 flex flex-col justify-center ">
           <div className="text-center">
             <h1 className=" text-2xl font-Gotham-Bold ">
               Welcome to the MetaBlog
             </h1>
             <p className=" font-Gotham-Light text-sm">
               Already have account?{" "}
-              <span className=" text-Primary-700">Log in</span>
+              <Link to={"/login"} className=" text-Primary-700">Log in</Link>
             </p>
           </div>
           <div className="w-full  grid place-items-center my-3">
@@ -109,7 +111,7 @@ const SignupPage = () => {
           </div>
           <div className=" w-full flex flex-col items-center font-Open-Sans tracking-wide">
             <form
-              className=" mt-3 w-[80%] flex flex-col"
+              className=" mt-3 w-[80%] flex flex-col justify-center h-full"
               onSubmit={handleSubmit}
             >
               <label htmlFor="username">
@@ -154,6 +156,11 @@ const SignupPage = () => {
                 />
               </label>
               <br />
+              {error && (
+                <Alert severity="error" className=" mb-5">
+                  {error}
+                </Alert>
+              )}
               <Button className="">Sign up</Button>
             </form>
           </div>
