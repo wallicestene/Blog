@@ -1,15 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/ui/button";
+import { useUserContext } from "@/hooks/UserContext";
 import { Alert } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [dispatch] = useUserContext();
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
   });
+  const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
   const handleOnchange = (e) => {
     const { name, value } = e.target;
@@ -28,14 +31,22 @@ const LoginPage = () => {
       })
       .then((response) => response.data)
       .then((user) => {
-        console.log(user);
-        localStorage.setItem("user", JSON.stringify(user.token));
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch({
+          type: "SET_USER",
+          payload: user,
+        });
         setError(null);
+        setRedirect(true);
       })
       .catch((err) => {
-        setError(err.response.data.error);
+        setError(err.response?.data.error);
       });
   };
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
+  console.log(redirect);
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
@@ -70,10 +81,7 @@ const LoginPage = () => {
             </p>
           </div>
           <div className=" w-full h-full flex flex-col items-center font-Open-Sans tracking-wide">
-            <form
-              className=" w-[80%] flex flex-col"
-              onSubmit={handleSubmit}
-            >
+            <form className=" w-[80%] flex flex-col" onSubmit={handleSubmit}>
               <label htmlFor="email" className="">
                 Email address <br />
                 <input

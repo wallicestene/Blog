@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { useUserContext } from "@/hooks/UserContext";
 import { Add } from "@mui/icons-material";
 import { Alert, Avatar } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const [dispatch] = useUserContext();
   const [userDetails, setUserDetails] = useState({
     username: "",
     profile: "",
@@ -13,6 +15,7 @@ const SignupPage = () => {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(false);
   const handleOnchange = (e) => {
     const { name, value } = e.target;
     setUserDetails((prevDetails) => {
@@ -30,14 +33,21 @@ const SignupPage = () => {
       })
       .then((response) => response.data)
       .then((user) => {
-        console.log(user);
-        localStorage.setItem("user", JSON.stringify(user.token));
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch({
+          type: "SET_USER",
+          payload: user,
+        });
         setError(null);
+        setRedirect(true);
       })
       .catch((err) => {
         setError(err.response.data.error);
       });
   };
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
   const uploadProfile = (e) => {
     const { files } = e.target;
     const formData = new FormData();
@@ -51,6 +61,7 @@ const SignupPage = () => {
         });
       });
   };
+
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
@@ -79,7 +90,9 @@ const SignupPage = () => {
             </h1>
             <p className=" font-Gotham-Light text-sm">
               Already have account?{" "}
-              <Link to={"/login"} className=" text-Primary-700">Log in</Link>
+              <Link to={"/login"} className=" text-Primary-700">
+                Log in
+              </Link>
             </p>
           </div>
           <div className="w-full  grid place-items-center my-3">
