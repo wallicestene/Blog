@@ -35,7 +35,7 @@ const Navbar = () => {
       {user ? (
         <Link
           to={"/login"}
-          className=" bg-gradient-to-t from-Secondary-900 to-Secondary-600 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
+          className=" bg-Primary-500 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
         >
           <div className=" flex items-center space-x-1 ">
             <Avatar
