@@ -1,50 +1,132 @@
 import { Button } from "@/components/ui/button";
+import { useUserContext } from "@/hooks/UserContext";
 import { Add } from "@mui/icons-material";
+import { Alert, Avatar } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const [dispatch] = useUserContext();
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    profile: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(false);
+  const handleOnchange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prevDetails) => {
+      return {
+        ...prevDetails,
+        [name]: value,
+      };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/signUp", {
+        ...userDetails,
+      })
+      .then((response) => response.data)
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch({
+          type: "SET_USER",
+          payload: user,
+        });
+        setError(null);
+        setRedirect(true);
+      })
+      .catch((err) => {
+        setError(err.response.data.error);
+      });
+  };
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
+  const uploadProfile = (e) => {
+    const { files } = e.target;
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    axios
+      .post("http://localhost:3000/blogs/image-upload", formData)
+      .then((response) => response.data)
+      .then((image) => {
+        setUserDetails((prevDetails) => {
+          return { ...prevDetails, profile: image };
+        });
+      });
+  };
+
   return (
-    <div className=" mt-[47px] grid  place-items-center w-full">
-      <div className=" h-full flex">
-        <div className="signUpRight relative border border-black w-full h-full">
-          <div className=" h-full w-full">
+    <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
+      <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">
+        <div className="signUpRight relative  w-full h-full ">
+          <div className="relative h-full w-full  overflow-hidden rounded-xl ">
             <img
               src="/HeroImage.png"
-              className=" h-full w-full object-cover object-center"
+              className=" h-full w-full object-cover object-center "
               alt="Sign up image"
             />
+            <div className=" absolute top-0 right-0 bg-Secondary-900/60 h-full w-full" />
           </div>
-          <div className=" absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full text-center text-white text-2xl text-c font-Gotham-Bold">
-            <h1>Welcome to the MetaBlog</h1>
+          <div className=" absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full text-center text-white">
+            <h1 className=" text-2xl font-Gotham-Bold">
+              Welcome to the MetaBlog
+            </h1>
+            <p className=" font-Gotham-Light text-sm">
+              Empowering Next-Generation Content Creation
+            </p>
           </div>
         </div>
-        <div className="sinUpLeft border border-Primary-500 w-full h-full px-6 py-4 ">
+        <div className="sinUpLeft  w-full h-full p-4 flex flex-col justify-center ">
           <div className="text-center">
             <h1 className=" text-2xl font-Gotham-Bold ">
               Welcome to the MetaBlog
             </h1>
             <p className=" font-Gotham-Light text-sm">
               Already have account?{" "}
-              <span className=" text-Primary-700">Log in</span>
+              <Link to={"/login"} className=" text-Primary-700">
+                Log in
+              </Link>
             </p>
           </div>
           <div className="w-full  grid place-items-center my-3">
             <div className="relative overflow-hidden">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1710548651496-59502bba8e80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className=" h-12 w-12 rounded-full object-cover"
-                alt="Profile"
+              <Avatar
+                sx={{
+                  height: "3rem",
+                  width: "3rem",
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+                src={`http://localhost:3000/uploads/${userDetails.profile}`}
               />
-              <div className="  absolute bottom-0 -right-0 z-10 bg-white rounded-full h-5 w-5 grid place-items-center cursor-pointer">
+              <label className="  absolute bottom-0 -right-0 z-10 bg-white rounded-full h-5 w-5 grid place-items-center cursor-pointer">
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  onChange={uploadProfile}
+                  className=" hidden"
+                />
                 <Add
                   sx={{
                     fontSize: "1rem",
                   }}
                 />
-              </div>
+              </label>
             </div>
           </div>
-          <div className=" w-full flex flex-col items-center">
-            <form className=" mt-5 w-[80%] flex flex-col">
+          <div className=" w-full flex flex-col items-center font-Open-Sans tracking-wide">
+            <form
+              className=" mt-3 w-[80%] flex flex-col justify-center h-full"
+              onSubmit={handleSubmit}
+            >
               <label htmlFor="username">
                 Username <br />
                 <input
@@ -53,35 +135,46 @@ const SignupPage = () => {
                   name="username"
                   id="username"
                   required
-                  className=" outline-none border-b-2 border-Primary-600 h-10  w-full "
+                  value={userDetails.username}
+                  onChange={handleOnchange}
+                  className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
               <br />
               <label htmlFor="email" className="">
-                Email address: <br />
+                Email address <br />
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   placeholder="Email Address"
                   required
-                  className=" outline-none border-b-2 border-Primary-600 h-10   w-full"
+                  value={userDetails.email}
+                  onChange={handleOnchange}
+                  className=" outline-none border-b-2 border-Primary-600 h-8   w-full"
                 />
               </label>
               <br />
               <label htmlFor="password">
-                Email address:
+                Password
                 <br />
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   placeholder="Password"
-                  className=" outline-none border-b-2 border-Primary-600 h-10  w-full "
+                  value={userDetails.password}
+                  onChange={handleOnchange}
+                  className=" outline-none border-b-2 border-Primary-600 h-8  w-full "
                 />
               </label>
               <br />
-              <Button className="">
-                Sign up
-              </Button>
+              {error && (
+                <Alert severity="error" className=" mb-5">
+                  {error}
+                </Alert>
+              )}
+              <Button className="">Sign up</Button>
             </form>
           </div>
         </div>
