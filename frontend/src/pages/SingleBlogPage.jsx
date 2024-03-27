@@ -68,7 +68,7 @@ const SingleBlogPage = () => {
                     <h1 className="text-2xl mt-2 font-Gotham-Bold text-Primary-900">
                       {bodyItem.heading}
                     </h1>
-                    <p className=" first-letter:block first-letter:float-left first-letter:text-[3rem] font-Open-Sans leading-7 text-[1.02rem] tracking-wide text-Secondary-900">
+                    <p className="first-letter:float-left first-letter:text-[3rem] font-Open-Sans leading-7 text-[1.02rem] tracking-wide text-Secondary-900">
                       {bodyItem.paragraph}
                     </p>
                   </div>
