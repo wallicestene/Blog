@@ -1,16 +1,23 @@
 import Logo from "@/assets/Logo";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarMobile from "./NavbarMobile";
-import { Avatar } from "@mui/material";
+import { Avatar, List, ListItem, ListItemButton } from "@mui/material";
 import { useUserContext } from "@/hooks/UserContext";
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 const Navbar = () => {
-  const [showNavMobile, setShowNavMobile] = useState(false);
+  const [showNavMobile, setShowNavMobile] = useState(true);
   const [{ user }] = useUserContext();
   return (
-    <div className="fixed z-20 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow ">
+    <div className="fixed z-20 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow  space-x-2">
       <div className="nav-left w-full">
         <Logo />
       </div>
@@ -45,7 +52,9 @@ const Navbar = () => {
               }}
               src={`http://localhost:3000/uploads/${user.profile}`}
             />{" "}
-            <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">{user?.username}</p>
+            <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">
+              {user?.username}
+            </p>
           </div>
         </Link>
       ) : (
@@ -58,17 +67,39 @@ const Navbar = () => {
           />
         </Link>
       )}
-      <div
-        className=" lg:hidden md:hidden"
-        onClick={() => setShowNavMobile(!showNavMobile)}
-      >
-        {showNavMobile ? <X /> : <Menu />}
+      <div className=" lg:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <Menu />
+          </SheetTrigger>
+          <SheetContent>
+            <nav className=" h-full w-full">
+              <List>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Home</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Blog</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Pages</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Contact</Link>
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-      {showNavMobile && (
-        <div className="lg:hidden md:hidden fixed z-10 bg-white top-14 right-0 w-1/2">
-          <NavbarMobile />
-        </div>
-      )}
     </div>
   );
 };
