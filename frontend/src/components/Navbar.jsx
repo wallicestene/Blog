@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Avatar, List, ListItem, ListItemButton } from "@mui/material";
 import { useUserContext } from "@/hooks/UserContext";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import AccountMenu from "./AccountMenu";
 const Navbar = () => {
   const [{ user }] = useUserContext();
   return (
@@ -30,34 +31,35 @@ const Navbar = () => {
         </nav>
       </div>
       {user ? (
-        <Link
-          to={"/login"}
-          className=" bg-Primary-500 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
-        >
-          <div className=" flex items-center space-x-1 ">
-            <Avatar
-              sx={{
-                backgroundColor: "white",
-                color: "black",
-                height: "2.25rem",
-                width: "2.25rem"
-              }}
-              src={`http://localhost:3000/uploads/${user.profile}`}
-            />{" "}
-            <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">
-              {user?.username}
-            </p>
-          </div>
-        </Link>
+        // <Link
+        //   to={"/login"}
+        //   className=" bg-Primary-500 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
+        // >
+        // <div className=" flex items-center space-x-1 ">
+        //   <Avatar
+        //     sx={{
+        //       backgroundColor: "white",
+        //       color: "black",
+        //       height: "2.25rem",
+        //       width: "2.25rem"
+        //     }}
+        //     src={`http://localhost:3000/uploads/${user.profile}`}
+        //   />{" "}
+        //   <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">
+        //     {user?.username}
+        //   </p>
+        // </div>
+      <AccountMenu/>
       ) : (
-        <Link to={"/login"}>
-          <Avatar
-            sx={{
-              backgroundColor: "white",
-              color: "black",
-            }}
-          />
-        </Link>
+        // </Link>
+        // <Link to={"/login"}>
+        <Avatar
+          sx={{
+            backgroundColor: "white",
+            color: "black",
+          }}
+        />
+        // </Link>
       )}
       <div className=" lg:hidden">
         <Sheet>
