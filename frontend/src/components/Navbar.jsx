@@ -1,20 +1,10 @@
 import Logo from "@/assets/Logo";
 import { Menu } from "lucide-react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavbarMobile from "./NavbarMobile";
 import { Avatar, List, ListItem, ListItemButton } from "@mui/material";
 import { useUserContext } from "@/hooks/UserContext";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const Navbar = () => {
-  const [showNavMobile, setShowNavMobile] = useState(true);
   const [{ user }] = useUserContext();
   return (
     <div className="fixed z-20 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow  space-x-2">
@@ -49,6 +39,8 @@ const Navbar = () => {
               sx={{
                 backgroundColor: "white",
                 color: "black",
+                height: "2.25rem",
+                width: "2.25rem"
               }}
               src={`http://localhost:3000/uploads/${user.profile}`}
             />{" "}
@@ -70,7 +62,7 @@ const Navbar = () => {
       <div className=" lg:hidden">
         <Sheet>
           <SheetTrigger>
-            <Menu />
+            <Menu className=" h-9 w-9" />
           </SheetTrigger>
           <SheetContent>
             <nav className=" h-full w-full">
