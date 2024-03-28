@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/hooks/UserContext";
 import { Add } from "@mui/icons-material";
@@ -7,7 +8,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 const SignupPage = () => {
-  const [dispatch] = useUserContext();
+  const [{ user }, dispatch] = useUserContext();
   const [userDetails, setUserDetails] = useState({
     username: "",
     profile: "",
@@ -42,7 +43,7 @@ const SignupPage = () => {
         setRedirect(true);
       })
       .catch((err) => {
-        setError(err.response.data.error);
+        setError(err.response?.data.error);
       });
   };
   if (redirect) {
@@ -61,7 +62,6 @@ const SignupPage = () => {
         });
       });
   };
-
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">

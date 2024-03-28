@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/hooks/UserContext";
 import { Alert } from "@mui/material";
@@ -7,7 +8,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [dispatch] = useUserContext();
+  const [{ user }, dispatch] = useUserContext();
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -26,9 +27,17 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/logIn", {
-        ...userDetails,
-      })
+      .post(
+        "http://localhost:3000/logIn",
+        {
+          ...userDetails,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => response.data)
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
@@ -36,8 +45,8 @@ const LoginPage = () => {
           type: "SET_USER",
           payload: user,
         });
-        setError(null);
         setRedirect(true);
+        setError(null);
       })
       .catch((err) => {
         setError(err.response?.data.error);
@@ -46,7 +55,6 @@ const LoginPage = () => {
   if (redirect) {
     return <Navigate to={"/"} />;
   }
-  console.log(redirect);
   return (
     <div className=" mt-[50px] grid place-items-center h-screen w-screen ">
       <div className=" lg:h-[90%] lg:w-[90%] md:h-full h-full w-full grid lg:grid-cols-2 grid-cols-1 overflow-hidden p-4">

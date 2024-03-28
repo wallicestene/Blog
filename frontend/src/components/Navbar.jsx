@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="nav-left w-full">
         <Logo />
       </div>
-      <div className="nav-center hidden lg:block md:block w-full">
+      <div className="nav-center hidden lg:block md:block w-full font-Open-Sans tracking-wider">
         <nav>
           <ul className="flex space-x-10">
             <li>
@@ -31,35 +31,16 @@ const Navbar = () => {
         </nav>
       </div>
       {user ? (
-        // <Link
-        //   to={"/login"}
-        //   className=" bg-Primary-500 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
-        // >
-        // <div className=" flex items-center space-x-1 ">
-        //   <Avatar
-        //     sx={{
-        //       backgroundColor: "white",
-        //       color: "black",
-        //       height: "2.25rem",
-        //       width: "2.25rem"
-        //     }}
-        //     src={`http://localhost:3000/uploads/${user.profile}`}
-        //   />{" "}
-        //   <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">
-        //     {user?.username}
-        //   </p>
-        // </div>
-      <AccountMenu/>
+        <AccountMenu />
       ) : (
-        // </Link>
-        // <Link to={"/login"}>
-        <Avatar
-          sx={{
-            backgroundColor: "white",
-            color: "black",
-          }}
-        />
-        // </Link>
+        <Link to={"/login"}>
+          <Avatar
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+            }}
+          />
+        </Link>
       )}
       <div className=" lg:hidden">
         <Sheet>
