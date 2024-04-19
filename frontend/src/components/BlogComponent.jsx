@@ -12,7 +12,7 @@ const BlogComponent = ({blogData}) => {
         src={blogData?.image}
         alt=""
         loading="lazy"
-        className=" object-cover w-full h-full transition-transform group-hover:scale-125 delay-50 ease-in-out duration-300 "
+        className=" object-cover w-full h-full transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500 "
       />
       <div className=" absolute bottom-5 left-0 right-0 p-2 z-10 text-white">
         <h2 className=" my-3 text-2xl tracking-wide font-Gotham-Bold font-bold">
