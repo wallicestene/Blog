@@ -65,10 +65,10 @@ const SingleBlogPage = () => {
               <div className=" w-full space-y-10">
                 {data.body?.map((bodyItem, index) => (
                   <div key={index} className=" space-y-2">
-                    <h1 className="text-2xl mt-2 font-Gotham-Bold text-Primary-900">
+                    <h1 className="text-2xl mt-2 font-Gotham-Bold text-Secondary-950">
                       {bodyItem.heading}
                     </h1>
-                    <p className="font-Open-Sans leading-7 text-[1.02rem] tracking-wide text-Secondary-900">
+                    <p className="font-Open-Sans leading-6 text-[0.9rem] tracking-wide text-Secondary-900">
                       {bodyItem.paragraph}
                     </p>
                   </div>
