@@ -11,6 +11,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useUserContext } from "@/hooks/UserContext";
+import { Link } from "react-router-dom";
 
 export default function AccountMenu() {
   const [{ user }, dispatch] = useUserContext();
@@ -94,8 +95,8 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar src={`http://localhost:3000/uploads/${user.profile}`} /> My
-          account
+          <Avatar src={`http://localhost:3000/uploads/${user.profile}`} />{" "}
+          <Link to={"/myAccount"}> My account</Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
@@ -110,9 +111,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem
-          onClick={LogOut}
-        >
+        <MenuItem onClick={LogOut}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

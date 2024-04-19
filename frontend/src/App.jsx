@@ -6,9 +6,10 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { useEffect } from "react";
 import { useUserContext } from "./hooks/UserContext";
+import AccountPage from "./pages/AccountPage";
 
 const App = () => {
-  const [,dispatch] = useUserContext();
+  const [, dispatch] = useUserContext();
   useEffect(() => {
     const authState = () => {
       const loggedUser = localStorage.getItem("user");
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/blogs/single-blog/:id" element={<SingleBlogPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/myAccount" element={<AccountPage />} />
         </Route>
       </Routes>
     </Router>
