@@ -44,12 +44,12 @@ const Banner = ({ data, isLoading, error }) => {
         </div>
       )}
       {data?.length > 0 && !isLoading && (
-        <div className="relative h-full w-full overflow-hidden  ">
+        <div className="relative h-full w-full overflow-hidden  group">
           <Link to={`/blogs/single-blog/${bannerData?._id}`}>
             <img
               src={bannerData?.image}
               alt=""
-              className=" object-cover h-full w-full object-center "
+              className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"
             />
             <div className=" absolute bottom-5 left-2 z-10 p-5 space-y-5">

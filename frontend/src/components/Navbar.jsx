@@ -1,20 +1,18 @@
 import Logo from "@/assets/Logo";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import NavbarMobile from "./NavbarMobile";
-import { Avatar } from "@mui/material";
+import { Avatar, List, ListItem, ListItemButton } from "@mui/material";
 import { useUserContext } from "@/hooks/UserContext";
-
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import AccountMenu from "./AccountMenu";
 const Navbar = () => {
-  const [showNavMobile, setShowNavMobile] = useState(false);
   const [{ user }] = useUserContext();
   return (
-    <div className="fixed z-20 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow ">
+    <div className="fixed z-20 w-full top-0 flex items-center justify-between h-12 px-4 bg-white shadow  space-x-2">
       <div className="nav-left w-full">
         <Logo />
       </div>
-      <div className="nav-center hidden lg:block md:block w-full">
+      <div className="nav-center hidden lg:block md:block w-full font-Open-Sans tracking-wider">
         <nav>
           <ul className="flex space-x-10">
             <li>
@@ -33,21 +31,7 @@ const Navbar = () => {
         </nav>
       </div>
       {user ? (
-        <Link
-          to={"/login"}
-          className=" bg-Primary-500 text-white rounded-full w-fit text-whit cursor-pointer space-x-2 font-Gotham-Light"
-        >
-          <div className=" flex items-center space-x-1 ">
-            <Avatar
-              sx={{
-                backgroundColor: "white",
-                color: "black",
-              }}
-              src={`http://localhost:3000/uploads/${user.profile}`}
-            />{" "}
-            <p className=" hidden lg:block md:block pr-2 first-letter:uppercase text-sm">{user?.username}</p>
-          </div>
-        </Link>
+        <AccountMenu />
       ) : (
         <Link to={"/login"}>
           <Avatar
@@ -58,17 +42,39 @@ const Navbar = () => {
           />
         </Link>
       )}
-      <div
-        className=" lg:hidden md:hidden"
-        onClick={() => setShowNavMobile(!showNavMobile)}
-      >
-        {showNavMobile ? <X /> : <Menu />}
+      <div className=" lg:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <Menu className=" h-9 w-9" />
+          </SheetTrigger>
+          <SheetContent>
+            <nav className=" h-full w-full">
+              <List>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Home</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Blog</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Pages</Link>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemButton>
+                    <Link to="/">Contact</Link>
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-      {showNavMobile && (
-        <div className="lg:hidden md:hidden fixed z-10 bg-white top-14 right-0 w-1/2">
-          <NavbarMobile />
-        </div>
-      )}
     </div>
   );
 };

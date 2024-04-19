@@ -103,6 +103,10 @@ module.exports = {
         "Gotham-Bold": ["Gotham", "sans-serif"],
         "Gotham-Light": ["Gotham-Light", "sans-serif"],
       },
+      flex:{
+        4: "0.4",
+        6: "0.6"
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
