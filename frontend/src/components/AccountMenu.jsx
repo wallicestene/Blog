@@ -94,10 +94,12 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar src={`http://localhost:3000/uploads/${user.profile}`} />{" "}
-          <Link to={"/myAccount"}> My account</Link>
-        </MenuItem>
+        <Link to={"/myAccount"}>
+          <MenuItem onClick={handleClose}>
+            <Avatar src={`http://localhost:3000/uploads/${user.profile}`} /> My
+            account
+          </MenuItem>
+        </Link>
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
