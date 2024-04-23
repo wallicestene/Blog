@@ -5,7 +5,7 @@ import { AccountCircle, AddCircle, Article } from "@mui/icons-material";
 const AccountPage = () => {
   const [{ user }] = useUserContext();
   return (
-    <div className=" py-16 h-screen flex gap-3 w-full ">
+    <div className=" pt-16 h-screen flex gap-3 w-full ">
       <div className="acc-right border flex-[0.2] border-black h-full w-full p-2 bg-Secondary-950 text-white font-Open-Sans">
         <div className=" text-lg font-bold my-1">
           <h1>{user?.username}</h1>
