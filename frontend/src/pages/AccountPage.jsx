@@ -34,7 +34,7 @@ const AccountPage = () => {
         </div>
       </div>
 
-      <div className="acc-right  border flex-[0.8] border-blue-700 h-full w-full">
+      <div className="acc-right  border flex-[0.8] border-blue-700 h-full w-full grid place-items-center">
         {(subPage === undefined || subPage === "profile") && <ProfilePage />}
       </div>
     </div>

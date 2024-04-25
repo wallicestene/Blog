@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 const ProfilePage = () => {
   const [redirect, setRedirect] = useState(null);
   const [{ user }, dispatch] = useUserContext();
+  console.log(user);
   const LogOutUser = () => {
     dispatch({
       type: "LOGOUT_USER",
@@ -16,10 +17,16 @@ const ProfilePage = () => {
     return <Navigate to={redirect} />;
   }
   return (
-    <div className="lg:w-1/2 w-full grid place-items-center border border-gray-300 shadow-lg shadow-gray-400 rounded-lg overflow-hidden">
-      <div className="relative flex items-center gap-2 bg-gradient-to-l from-rose-400 via-fuchsia-500 rounded-b-lg to-indigo-500 h-52 w-full p-2">
+    <div className="lg:w-1/2 w-full grid place-items-center border border-gray-300 shadow-lg shadow-gray-400 rounded-lg overflow-hidden font-Open-Sans">
+      <div className="relative flex items-center gap-2 bg-gradient-to-l from-rose-400 via-fuchsia-500 rounded-b-lg to-indigo-500 h-52 w-full">
+        <img
+          className=" absolute h-full w-full object-cover "
+          src={`http://localhost:3000/uploads/${user?.profile}`}
+          alt=""
+        />
         <div className=" absolute z-10 -bottom-24 right-1/2 translate-x-1/2 -translate-y-1/2">
           <Avatar
+            src={`http://localhost:3000/uploads/${user?.profile}`}
             sx={{
               width: 100,
               height: 100,
