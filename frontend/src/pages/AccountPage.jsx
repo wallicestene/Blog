@@ -3,11 +3,10 @@ import { useUserContext } from "@/hooks/UserContext";
 import { AccountCircle, AddCircle, Article } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
+import BlogsPage from "./BlogsPage";
 const AccountPage = () => {
   const [{ user }] = useUserContext();
   const { subPage } = useParams();
-  console.log(subPage);
-  // connst
   return (
     <div className=" pt-16 h-screen flex gap-3 w-full ">
       <div className="acc-left border flex-[0.2] border-black h-full w-full p-2 bg-Secondary-950 text-white font-Open-Sans">
@@ -34,8 +33,9 @@ const AccountPage = () => {
         </div>
       </div>
 
-      <div className="acc-right  border flex-[0.8] border-blue-700 h-full w-full grid place-items-center">
+      <div className="acc-right  border flex-[0.8] border-blue-700 h-full w-full">
         {(subPage === undefined || subPage === "profile") && <ProfilePage />}
+        {subPage === "Blogs" && <BlogsPage />}
       </div>
     </div>
   );
