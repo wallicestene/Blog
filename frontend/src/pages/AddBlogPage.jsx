@@ -89,7 +89,7 @@ const AddBlogPage = () => {
             {inputTitle("Blog image", "Upload image for your blog post")}
             <label
               htmlFor="image"
-              className=" flex items-center space-x-2 border w-fit p-6 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
+              className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
             >
               <span>Upload</span>
               <CloudUploadOutlined />
