@@ -8,9 +8,10 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useState } from "react";
+import axios from "axios";
 const AddBlogPage = () => {
   const [blogDetails, setBlogDetails] = useState({
-    author: "",
+    author: "65f20eacad0a8597c5ad3364",
     title: "",
     image: "",
     body: "",
@@ -72,6 +73,21 @@ const AddBlogPage = () => {
     ],
   };
 
+  const uploadImage = (e) => {
+    const { files } = e.target;
+    let formData = new FormData();
+    formData.append("image", files[0]);
+    axios
+      .post("http://localhost:3000/blogs/image-upload", formData)
+      .then((response) => response.data)
+      .then((image) =>
+        setBlogDetails((prevDetails) => {
+          return { ...prevDetails, image: image };
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+
   const inputHeader = (header) => {
     return <h1 className=" text-2xl font-bold">{header}</h1>;
   };
@@ -87,13 +103,21 @@ const AddBlogPage = () => {
     );
   };
   console.log(blogDetails);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/", blogDetails)
+      .then((response) => response.data)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
         Create a new Blog Post
       </h1>
       <div>
-        <form className=" space-y-5">
+        <form className=" space-y-5" onSubmit={handleSubmit}>
           <div>
             {inputTitle("Title", "Enter title for your blog post")}
             <input
@@ -114,6 +138,7 @@ const AddBlogPage = () => {
             <label
               htmlFor="image"
               className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
+              onChange={uploadImage}
             >
               <span>Upload</span>
               <CloudUploadOutlined />
@@ -179,9 +204,9 @@ const AddBlogPage = () => {
               ))}
             </Menu>
           </div>
-          {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Submit
-          </button> */}
+          </button>
         </form>
       </div>
     </div>
