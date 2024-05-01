@@ -26,6 +26,9 @@ const AddBlogPage = () => {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
+    setBlogDetails((prevDetails) => {
+      return { ...prevDetails, category: options[index] };
+    });
   };
 
   const handleClose = () => {

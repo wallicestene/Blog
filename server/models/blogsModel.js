@@ -15,18 +15,7 @@ const blogSchema = new Schema(
       required: true, 
     },
     body: {
-      type: [
-        {
-          heading: {
-            type: String,
-            required: true,
-          },
-          paragraph: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
+      type:  String,
       required: true,
     },
     category: {
