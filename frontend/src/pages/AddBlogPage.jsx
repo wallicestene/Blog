@@ -9,6 +9,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useState } from "react";
 const AddBlogPage = () => {
+  const [blogDetails, setBlogDetails] = useState({
+    author: "",
+    title: "",
+    image: "",
+    body: "",
+    category: "",
+  });
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
   const open = Boolean(anchorEl);
@@ -24,6 +31,12 @@ const AddBlogPage = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleBodyChange = (body) => {
+    setBlogDetails((prevDetails) => {
+      return { ...prevDetails, body };
+    });
+  };
+
   const options = [
     "Technology",
     "Science",
@@ -70,18 +83,26 @@ const AddBlogPage = () => {
       </div>
     );
   };
+  console.log(blogDetails);
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
         Create a new Blog Post
       </h1>
       <div>
-        <form className=" space-y-3">
+        <form className=" space-y-5">
           <div>
             {inputTitle("Title", "Enter title for your blog post")}
             <input
               type="text"
+              name="title"
               placeholder="Title"
+              onChange={(e) =>
+                setBlogDetails((prevDetails) => {
+                  return { ...prevDetails, title: e.target.value };
+                })
+              }
+              value={blogDetails.title}
               className=" h-14 border border-gray-300 outline-none rounded px-2 w-full text-lg "
             />
           </div>
@@ -108,8 +129,8 @@ const AddBlogPage = () => {
               theme="snow"
               placeholder="Start typing here..."
               modules={modules}
-              //   formats={formats}
-              //   value={content}
+              value={blogDetails.body}
+              onChange={handleBodyChange}
             />
           </div>
           <div>
