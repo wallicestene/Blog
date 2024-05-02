@@ -1,5 +1,5 @@
 import useFetch from "@/hooks/useFetch";
-import { Html, KeyboardArrowLeft } from "@mui/icons-material";
+import { KeyboardArrowLeft } from "@mui/icons-material";
 import { Alert, Avatar, CircularProgress } from "@mui/material";
 import moment from "moment";
 import { useEffect } from "react";
@@ -60,10 +60,10 @@ const SingleBlogPage = () => {
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="singleBottom">
+          <div className="singleBottom font-Open-Sans">
             <article>
               <div
-                className="ql-editor w-full space-y-10"
+                className="ql-editor w-full"
                 dangerouslySetInnerHTML={{ __html: data.body }}
               />
             </article>

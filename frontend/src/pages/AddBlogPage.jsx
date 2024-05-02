@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useState } from "react";
 import axios from "axios";
+
 const AddBlogPage = () => {
   const [blogDetails, setBlogDetails] = useState({
     author: "65f20eacad0a8597c5ad3364",
@@ -64,12 +65,41 @@ const AddBlogPage = () => {
     "Politics & Current Affairs",
   ];
   const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
+    toolbar: 
+    //  [
+    //     { header: "1" },
+    //     { header: "2" },
+    //     {
+    //       font: [
+    //         { value: "serif", label: "Serif" },
+    //         { value: "sans-serif", label: "Sans Serif" },
+    //         { value: "monospace", label: "Monospace" },
+    //       ],
+    //     },
+    //   ],
+    //   [{ size: [] }],
+    //   ["bold", "italic", "underline", "strike", "blockquote"],
+    //   [{ list: "ordered" }, { list: "bullet" }],
+    //   ["link", "image"],
+    [
+      ["bold", "italic", "underline", "strike"], // toggled buttons
+      ["blockquote", "code-block"],
+      ["link", "image", "video", "formula"],
+
+      [{ header: 1 }, { header: 2 }], // custom button values
+      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+      [{ script: "sub" }, { script: "super" }], // superscript/subscript
+      [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+      [{ direction: "rtl" }], // text direction
+
+      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      [{ font: [] }],
+      [{ align: [] }],
+
+      ["clean"],
     ],
   };
 
