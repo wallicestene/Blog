@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -51,33 +51,32 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        'Primary': {
-          '50': '#edf4ff',
-          '100': '#deebff',
-          '200': '#c3daff',
-          '300': '#9fbfff',
-          '400': '#789bff',
-          '500': '#4b6bfb',
-          '600': '#3a4cf1',
-          '700': '#2d3bd5',
-          '800': '#2835ab',
-          '900': '#283487',
-          '950': '#181e4e',
-      },'Secondary': {
-        '50': '#f4f6fa',
-        '100': '#e7eaf2',
-        '200': '#d4d9e9',
-        '300': '#b6c1da',
-        '400': '#93a1c7',
-        '500': '#7986b8',
-        '600': '#6771a9',
-        '700': '#5b619a',
-        '800': '#4e527f',
-        '900': '#424566',
-        '950': '#242535',    
-    },
-    
-      
+        Primary: {
+          50: "#edf4ff",
+          100: "#deebff",
+          200: "#c3daff",
+          300: "#9fbfff",
+          400: "#789bff",
+          500: "#4b6bfb",
+          600: "#3a4cf1",
+          700: "#2d3bd5",
+          800: "#2835ab",
+          900: "#283487",
+          950: "#181e4e",
+        },
+        Secondary: {
+          50: "#f4f6fa",
+          100: "#e7eaf2",
+          200: "#d4d9e9",
+          300: "#b6c1da",
+          400: "#93a1c7",
+          500: "#7986b8",
+          600: "#6771a9",
+          700: "#5b619a",
+          800: "#4e527f",
+          900: "#424566",
+          950: "#242535",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -99,15 +98,15 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        "Open-Sans": ["Open-Sans", " sans-serif"],
+        "Open-Sans": ["Avenir", " sans-serif"],
         "Gotham-Bold": ["Gotham", "sans-serif"],
         "Gotham-Light": ["Gotham-Light", "sans-serif"],
       },
-      flex:{
+      flex: {
         4: "0.4",
-        6: "0.6"
-      }
+        6: "0.6",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

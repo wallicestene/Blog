@@ -47,7 +47,7 @@ const Banner = ({ data, isLoading, error }) => {
         <div className="relative h-full w-full overflow-hidden  group">
           <Link to={`/blogs/single-blog/${bannerData?._id}`}>
             <img
-              src={bannerData?.image}
+              src={`http://localhost:3000/uploads/${bannerData?.image}`}
               alt=""
               className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"

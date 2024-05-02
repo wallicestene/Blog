@@ -54,26 +54,18 @@ const SingleBlogPage = () => {
           </div>
           <div className="singleMid lg:w-11/12 w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
             <img
-              src={data.image}
+              src={`http://localhost:3000/uploads/${data.image}`}
               loading="lazy"
               alt=""
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="singleBottom">
+          <div className="singleBottom font-Open-Sans">
             <article>
-              <div className=" w-full space-y-10">
-                {data.body?.map((bodyItem, index) => (
-                  <div key={index} className=" space-y-2">
-                    <h1 className="text-2xl mt-2 font-Gotham-Bold text-Secondary-950">
-                      {bodyItem.heading}
-                    </h1>
-                    <p className="font-Open-Sans leading-6 text-[0.9rem] tracking-wide text-Secondary-900">
-                      {bodyItem.paragraph}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <div
+                className="ql-editor w-full"
+                dangerouslySetInnerHTML={{ __html: data.body }}
+              />
             </article>
           </div>
         </>
