@@ -28,7 +28,7 @@ const SingleBlogPage = () => {
       )}
       {data && !isLoading && (
         <>
-          <div className=" ">
+          <div className=" lg:w-11/12 mx-auto ">
             <div className=" flex items-center lg:text-sm text-xs font-Gotham-Light my-2 hover:underline ">
               <KeyboardArrowLeft />
               <button onClick={() => history("/")}>Back to Home</button>
@@ -52,7 +52,7 @@ const SingleBlogPage = () => {
               <p>{moment(data?.createdAt).format("Do MMM YYYY")}</p>
             </div>
           </div>
-          <div className="singleMid lg:w-11/12 w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
+          <div className="singleMid lg:w-11/12 mx-auto w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
             <img
               src={`http://localhost:3000/uploads/${data.image}`}
               loading="lazy"
@@ -60,10 +60,10 @@ const SingleBlogPage = () => {
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="singleBottom">
-            <article className=" ">
+          <div className="singleBottom lg:w-11/12 mx-auto ">
+            <article className=" prose-base font-Open-Sans prose-h1:font-semibold prose-h1:font-Gotham-Bold prose-headings:text-Secondary-950">
               <div
-                className="ql-editor prose-base"
+                className="ql-editor "
                 dangerouslySetInnerHTML={{ __html: data.body }}
               />
             </article>

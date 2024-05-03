@@ -98,7 +98,7 @@ body::-webkit-scrollbar {
 }
 @font-face {
   font-family: "Avenir";
-  src: url("./assets/avenir-lt-std/AvenirLTStd-Medium.otf");
+  src: url("./assets/avenir-lt-std/AvenirLTStd-Book.otf");
   font-weight: normal;
   font-style: normal;
 }
