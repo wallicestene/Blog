@@ -106,10 +106,10 @@ body::-webkit-scrollbar {
   height: 480px;
   clip-path: ellipse(98% 100% at 50% 0%);
 }
-.ql-editor h1 {
+/* .ql-editor h1 {
   @apply text-4xl font-bold mb-4 font-Gotham-Bold;
-}
-
+} */
+/* 
 .ql-editor h2 {
   @apply text-2xl font-bold mb-1;
 }
@@ -122,7 +122,7 @@ body::-webkit-scrollbar {
 }
 .ql-editor {
   @apply text-base space-y-3 ;
-}
+} */
 
 /* For small devices (phones, 576px and up) */
 @media (min-width: 576px) {

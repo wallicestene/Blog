@@ -60,10 +60,10 @@ const SingleBlogPage = () => {
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="singleBottom font-Open-Sans">
-            <article>
+          <div className="singleBottom">
+            <article className=" ">
               <div
-                className="ql-editor w-full"
+                className="ql-editor prose-base"
                 dangerouslySetInnerHTML={{ __html: data.body }}
               />
             </article>
