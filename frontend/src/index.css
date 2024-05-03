@@ -123,7 +123,9 @@ body::-webkit-scrollbar {
 .ql-editor {
   @apply text-base space-y-3 ;
 } */
-
+/* .blogComp{
+  @apply text-balance line-clamp-[2] overflow-hidden whitespace-nowrap no-underline;
+} */
 /* For small devices (phones, 576px and up) */
 @media (min-width: 576px) {
   .imgContainer {
