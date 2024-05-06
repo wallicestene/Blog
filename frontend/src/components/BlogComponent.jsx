@@ -15,7 +15,7 @@ const BlogComponent = ({ blogData }) => {
           loading="lazy"
           className=" object-cover w-full h-full transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500 "
         />
-        <div className=" absolute bottom-5 left-0 right-0 p-2 z-10 text-white">
+        <div className=" absolute bottom-1 left-0 right-0 p-2 z-10 text-white">
           <h2 className=" my-1 text-2xl tracking-wide font-Gotham-Bold font-bold">
             {blogData?.title}
           </h2>

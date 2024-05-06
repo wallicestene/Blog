@@ -66,21 +66,6 @@ const AddBlogPage = () => {
   ];
   const modules = {
     toolbar:
-      //  [
-      //     { header: "1" },
-      //     { header: "2" },
-      //     {
-      //       font: [
-      //         { value: "serif", label: "Serif" },
-      //         { value: "sans-serif", label: "Sans Serif" },
-      //         { value: "monospace", label: "Monospace" },
-      //       ],
-      //     },
-      //   ],
-      //   [{ size: [] }],
-      //   ["bold", "italic", "underline", "strike", "blockquote"],
-      //   [{ list: "ordered" }, { list: "bullet" }],
-      //   ["link", "image"],
       [
         [{ header: 1 }, { header: 2 }],
         ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -88,7 +73,7 @@ const AddBlogPage = () => {
         [{ size: ["small", false, "large", "huge"] }], // custom dropdown
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
         ["blockquote", "code-block"],
-        ["link", "image", "video", "formula"],
+        ["link",  "formula"],
         [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
         [{ script: "sub" }, { script: "super" }], // superscript/subscript
         [{ indent: "-1" }, { indent: "+1" }], // outdent/indent

@@ -52,7 +52,7 @@ const Banner = ({ data, isLoading, error }) => {
               className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"
             />
-            <div className=" absolute bottom-5 left-2 z-10 p-5 space-y-3">
+            <div className=" absolute bottom-2 left-2 z-10 p-5 space-y-3">
               <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
                 <span>{bannerData?.category}</span>
               </div>
