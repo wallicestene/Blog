@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const AddBlogPage = () => {
   const [blogDetails, setBlogDetails] = useState({
@@ -65,24 +66,23 @@ const AddBlogPage = () => {
     "Politics & Current Affairs",
   ];
   const modules = {
-    toolbar:
-      [
-        [{ header: 1 }, { header: 2 }],
-        ["bold", "italic", "underline", "strike"], // toggled buttons
+    toolbar: [
+      [{ header: 1 }, { header: 2 }],
+      ["bold", "italic", "underline", "strike"], // toggled buttons
 
-        [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ["blockquote", "code-block"],
-        ["link",  "formula"],
-        [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-        [{ script: "sub" }, { script: "super" }], // superscript/subscript
-        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-        [{ direction: "rtl" }], // text direction
+      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["blockquote", "code-block"],
+      ["link", "formula"],
+      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+      [{ script: "sub" }, { script: "super" }], // superscript/subscript
+      [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+      [{ direction: "rtl" }], // text direction
 
-        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-        [{ font: [] }],
-        [{ align: [] }],
-      ],
+      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      [{ font: [] }],
+      [{ align: [] }],
+    ],
   };
 
   const uploadImage = (e) => {
@@ -104,7 +104,11 @@ const AddBlogPage = () => {
     return <h1 className=" text-2xl font-Gotham-Bold">{header}</h1>;
   };
   const inputDescription = (description) => {
-    return <p className=" text-sm text-gray-500 mb-2 font-Open-Sans">{description}</p>;
+    return (
+      <p className=" text-sm text-gray-500 mb-2 font-Open-Sans">
+        {description}
+      </p>
+    );
   };
   const inputTitle = (header, description) => {
     return (
@@ -114,13 +118,18 @@ const AddBlogPage = () => {
       </div>
     );
   };
-  console.log(blogDetails);
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:3000/", blogDetails)
       .then((response) => response.data)
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data) {
+          return toast.success("Blog Added successfully!");
+        } else {
+          return toast.error("Something went wrong! Please try again later");
+        }
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -166,7 +175,6 @@ const AddBlogPage = () => {
                     type="file"
                     name="image"
                     id="image"
-                    accept=".png,.jpg,.jpeg"
                     className=" hidden"
                   />
                 </>
