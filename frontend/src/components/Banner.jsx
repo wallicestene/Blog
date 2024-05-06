@@ -4,6 +4,7 @@ import moment from "moment";
 import { Skeleton } from "./ui/skeleton";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { extractContent } from "@/hooks/extractContent";
 
 const Banner = ({ data, isLoading, error }) => {
   const [bannerData, setBannerData] = useState(null);
@@ -19,7 +20,6 @@ const Banner = ({ data, isLoading, error }) => {
       return () => clearInterval(intervalId); // clean up on unmount
     }
   }, [data, data.length]);
-
   return (
     <div className="relative h-[400px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-hidden mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
       {isLoading && (
@@ -52,13 +52,17 @@ const Banner = ({ data, isLoading, error }) => {
               className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"
             />
-            <div className=" absolute bottom-5 left-2 z-10 p-5 space-y-5">
+            <div className=" absolute bottom-2 left-2 z-10 p-5 space-y-3">
               <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
                 <span>{bannerData?.category}</span>
               </div>
               <h1 className=" font-Gotham-Bold text-3xl font-bold text-white">
                 {bannerData?.title}
               </h1>
+              <p className=" text-sm font-Open-Sans text-white">
+                {extractContent(bannerData?.body) + "..."}
+              </p>
+
               <div className=" flex items-center gap-x-4 text-white font-Gotham-Light text-sm">
                 <Avatar
                   sx={{

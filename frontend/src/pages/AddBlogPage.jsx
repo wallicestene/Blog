@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const AddBlogPage = () => {
   const [blogDetails, setBlogDetails] = useState({
@@ -65,41 +66,22 @@ const AddBlogPage = () => {
     "Politics & Current Affairs",
   ];
   const modules = {
-    toolbar: 
-    //  [
-    //     { header: "1" },
-    //     { header: "2" },
-    //     {
-    //       font: [
-    //         { value: "serif", label: "Serif" },
-    //         { value: "sans-serif", label: "Sans Serif" },
-    //         { value: "monospace", label: "Monospace" },
-    //       ],
-    //     },
-    //   ],
-    //   [{ size: [] }],
-    //   ["bold", "italic", "underline", "strike", "blockquote"],
-    //   [{ list: "ordered" }, { list: "bullet" }],
-    //   ["link", "image"],
-    [
+    toolbar: [
+      [{ header: 1 }, { header: 2 }],
       ["bold", "italic", "underline", "strike"], // toggled buttons
-      ["blockquote", "code-block"],
-      ["link", "image", "video", "formula"],
 
-      [{ header: 1 }, { header: 2 }], // custom button values
+      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["blockquote", "code-block"],
+      ["link", "formula"],
       [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
       [{ script: "sub" }, { script: "super" }], // superscript/subscript
       [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
       [{ direction: "rtl" }], // text direction
 
-      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
       [{ color: [] }, { background: [] }], // dropdown with defaults from theme
       [{ font: [] }],
       [{ align: [] }],
-
-      ["clean"],
     ],
   };
 
@@ -119,10 +101,14 @@ const AddBlogPage = () => {
   };
 
   const inputHeader = (header) => {
-    return <h1 className=" text-2xl font-bold">{header}</h1>;
+    return <h1 className=" text-2xl font-Gotham-Bold">{header}</h1>;
   };
   const inputDescription = (description) => {
-    return <p className=" text-sm text-gray-500 mb-2">{description}</p>;
+    return (
+      <p className=" text-sm text-gray-500 mb-2 font-Open-Sans">
+        {description}
+      </p>
+    );
   };
   const inputTitle = (header, description) => {
     return (
@@ -132,13 +118,18 @@ const AddBlogPage = () => {
       </div>
     );
   };
-  console.log(blogDetails);
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:3000/", blogDetails)
       .then((response) => response.data)
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data) {
+          return toast.success("Blog Added successfully!");
+        } else {
+          return toast.error("Something went wrong! Please try again later");
+        }
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -170,15 +161,24 @@ const AddBlogPage = () => {
               className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
               onChange={uploadImage}
             >
-              <span>Upload</span>
-              <CloudUploadOutlined />
-              <input
-                type="file"
-                name="image"
-                id="image"
-                accept=".png,.jpg,.jpeg"
-                className=" hidden"
-              />
+              {blogDetails.image ? (
+                <img
+                  src={`http://localhost:3000/uploads/${blogDetails?.image}`}
+                  alt="Blog image"
+                  className=" h-[50vh] object-contain"
+                />
+              ) : (
+                <>
+                  <span>Upload</span>
+                  <CloudUploadOutlined />
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    className=" hidden"
+                  />
+                </>
+              )}
             </label>
           </div>
           <div>
@@ -189,6 +189,8 @@ const AddBlogPage = () => {
               modules={modules}
               value={blogDetails.body}
               onChange={handleBodyChange}
+              // style={{ height: "20rem", overflow: "hidden",border: "1px solid #dcd7d7" }}
+              className=" h-80 overflow-y-hidden border font-Open-Sans"
             />
           </div>
           <div>
