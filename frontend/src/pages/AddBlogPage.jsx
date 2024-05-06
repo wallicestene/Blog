@@ -197,7 +197,7 @@ const AddBlogPage = () => {
               value={blogDetails.body}
               onChange={handleBodyChange}
               // style={{ height: "20rem", overflow: "hidden",border: "1px solid #dcd7d7" }}
-              className=" h-80 overflow-y-hidden border"
+              className=" h-80 overflow-y-hidden border font-Open-Sans"
             />
           </div>
           <div>

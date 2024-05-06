@@ -4,6 +4,7 @@ import moment from "moment";
 import { Skeleton } from "./ui/skeleton";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { extractContent } from "@/hooks/extractContent";
 
 const Banner = ({ data, isLoading, error }) => {
   const [bannerData, setBannerData] = useState(null);
@@ -19,12 +20,6 @@ const Banner = ({ data, isLoading, error }) => {
       return () => clearInterval(intervalId); // clean up on unmount
     }
   }, [data, data.length]);
-  const extractContent = (htmlContent) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-    const firstParagraph = doc.querySelector("p"); // Select the first <p> tag
-    return firstParagraph ? firstParagraph.innerHTML.substring(0, 185) : ""; // return text.substring(0, 150); // Display only the first 20 characters
-  };
   return (
     <div className="relative h-[400px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-hidden mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
       {isLoading && (
@@ -65,7 +60,7 @@ const Banner = ({ data, isLoading, error }) => {
                 {bannerData?.title}
               </h1>
               <p className=" text-sm font-Open-Sans text-white">
-                {extractContent(bannerData?.body) + "..."}
+                {extractContent(bannerData?.body, 200) + "..."}
               </p>
 
               <div className=" flex items-center gap-x-4 text-white font-Gotham-Light text-sm">

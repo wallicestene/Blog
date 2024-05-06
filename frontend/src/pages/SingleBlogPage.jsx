@@ -36,7 +36,7 @@ const SingleBlogPage = () => {
             <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
               <span>{data?.category}</span>
             </div>
-            <h1 className=" my-3 text-4xl tracking-wide font-Gotham-Bold leading-7 text-Secondary-950">
+            <h1 className=" my-3 text-4xl font-Gotham-Bold text-Secondary-950">
               {data?.title}
             </h1>
             <div className=" flex items-center space-x-4 text-Secondary-900  text-[0.75rem] mt-3 font-Gotham-Light tracking-wide font-bold">
@@ -61,7 +61,7 @@ const SingleBlogPage = () => {
             />
           </div>
           <div className="singleBottom lg:w-11/12 mx-auto ">
-            <article className=" prose-base font-Open-Sans prose-h1:font-semibold prose-h1:font-Gotham-Bold prose-headings:text-Secondary-950">
+            <article className=" prose-base font-Open-Sans prose-headings:font-semibold prose-h1:font-Gotham-Bold prose-headings:text-Secondary-950 prose-headings:first-letter:uppercase">
               <div
                 className="ql-editor "
                 dangerouslySetInnerHTML={{ __html: data.body }}
