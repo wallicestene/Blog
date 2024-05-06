@@ -116,10 +116,10 @@ const AddBlogPage = () => {
   };
 
   const inputHeader = (header) => {
-    return <h1 className=" text-2xl font-bold">{header}</h1>;
+    return <h1 className=" text-2xl font-Gotham-Bold">{header}</h1>;
   };
   const inputDescription = (description) => {
-    return <p className=" text-sm text-gray-500 mb-2">{description}</p>;
+    return <p className=" text-sm text-gray-500 mb-2 font-Open-Sans">{description}</p>;
   };
   const inputTitle = (header, description) => {
     return (
@@ -167,15 +167,25 @@ const AddBlogPage = () => {
               className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
               onChange={uploadImage}
             >
-              <span>Upload</span>
-              <CloudUploadOutlined />
-              <input
-                type="file"
-                name="image"
-                id="image"
-                accept=".png,.jpg,.jpeg"
-                className=" hidden"
-              />
+              {blogDetails.image ? (
+                <img
+                  src={`http://localhost:3000/uploads/${blogDetails?.image}`}
+                  alt="Blog image"
+                  className=" h-[50vh] object-contain"
+                />
+              ) : (
+                <>
+                  <span>Upload</span>
+                  <CloudUploadOutlined />
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept=".png,.jpg,.jpeg"
+                    className=" hidden"
+                  />
+                </>
+              )}
             </label>
           </div>
           <div>
@@ -186,7 +196,8 @@ const AddBlogPage = () => {
               modules={modules}
               value={blogDetails.body}
               onChange={handleBodyChange}
-              style={{ height: "20rem", overflow: "hidden" }}
+              // style={{ height: "20rem", overflow: "hidden",border: "1px solid #dcd7d7" }}
+              className=" h-80 overflow-y-hidden border"
             />
           </div>
           <div>
