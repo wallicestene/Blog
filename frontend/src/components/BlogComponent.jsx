@@ -21,7 +21,7 @@ const BlogComponent = ({ blogData }) => {
           </h2>
 
           <p className=" text-sm font-Open-Sans">
-            {extractContent(blogData?.body,1) + "..."}
+            {extractContent(blogData?.body).substring(0, 100) + "..."}
           </p>
           <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
             <div className=" flex items-center gap-1">

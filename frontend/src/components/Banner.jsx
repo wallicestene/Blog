@@ -60,7 +60,7 @@ const Banner = ({ data, isLoading, error }) => {
                 {bannerData?.title}
               </h1>
               <p className=" text-sm font-Open-Sans text-white">
-                {extractContent(bannerData?.body) + "..."}
+                {extractContent(bannerData?.body).substring(0, 200) + "..."}
               </p>
 
               <div className=" flex items-center gap-x-4 text-white font-Gotham-Light text-sm">
