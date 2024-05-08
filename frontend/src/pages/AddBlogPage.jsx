@@ -1,4 +1,4 @@
-import { CloudUploadOutlined } from "@mui/icons-material";
+import { Close, CloudUploadOutlined } from "@mui/icons-material";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -20,7 +20,7 @@ const AddBlogPage = () => {
     category: "",
   });
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -105,7 +105,7 @@ const AddBlogPage = () => {
   };
   const inputDescription = (description) => {
     return (
-      <p className=" text-sm text-gray-500 mb-2 font-Open-Sans">
+      <p className="after:content-['*'] after:text-red-600 after:ml-[2px] text-sm text-gray-500 mb-2 font-Open-Sans">
         {description}
       </p>
     );
@@ -120,6 +120,16 @@ const AddBlogPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !blogDetails.title ||
+      !blogDetails.author ||
+      !blogDetails.image ||
+      !blogDetails.image ||
+      !blogDetails.body ||
+      !blogDetails.category
+    ) {
+      return toast.error(" All fields must be filled!  ");
+    }
     axios
       .post("http://localhost:3000/", blogDetails)
       .then((response) => response.data)
@@ -141,6 +151,7 @@ const AddBlogPage = () => {
         <form className=" space-y-5" onSubmit={handleSubmit}>
           <div>
             {inputTitle("Title", "Enter title for your blog post")}
+
             <input
               type="text"
               name="title"
@@ -156,30 +167,46 @@ const AddBlogPage = () => {
           </div>
           <div>
             {inputTitle("Blog image", "Upload image for your blog post")}
-            <label
-              htmlFor="image"
-              className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
-              onChange={uploadImage}
-            >
-              {blogDetails.image ? (
+
+            {blogDetails.image ? (
+              <div className="relative w-fit">
+                {" "}
                 <img
                   src={`http://localhost:3000/uploads/${blogDetails?.image}`}
                   alt="Blog image"
                   className=" h-[50vh] object-contain"
                 />
-              ) : (
-                <>
-                  <span>Upload</span>
-                  <CloudUploadOutlined />
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    className=" hidden"
+                <div
+                  onClick={() =>
+                    setBlogDetails((prevDetails) => {
+                      return { ...prevDetails, image: "" };
+                    })
+                  }
+                  className=" absolute top-5 right-5 ring-1 ring-white text-white bg-Primary-500 rounded flex items-center justify-center p-[2px] cursor-pointer"
+                >
+                  <Close
+                    sx={{
+                      fontSize: "1.1rem",
+                    }}
                   />
-                </>
-              )}
-            </label>
+                </div>
+              </div>
+            ) : (
+              <label
+                htmlFor="image"
+                className=" flex items-center space-x-2 border w-fit p-8 bg-Secondary-800 rounded-md text-white text-sm hover:cursor-pointer "
+                onChange={uploadImage}
+              >
+                <span>Upload</span>
+                <CloudUploadOutlined />
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  className=" hidden"
+                />
+              </label>
+            )}
           </div>
           <div>
             {inputTitle("Content", "Provide your content here...")}
