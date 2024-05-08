@@ -10,10 +10,12 @@ import Menu from "@mui/material/Menu";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { useUserContext } from "@/hooks/UserContext";
 
 const AddBlogPage = () => {
+  const [{user}] = useUserContext()
   const [blogDetails, setBlogDetails] = useState({
-    author: "65f20eacad0a8597c5ad3364",
+    author: user?.id,
     title: "",
     image: "",
     body: "",

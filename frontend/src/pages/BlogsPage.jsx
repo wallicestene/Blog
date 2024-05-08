@@ -1,9 +1,12 @@
 import BlogComponent from "@/components/BlogComponent";
+import { useUserContext } from "@/hooks/UserContext";
 import useFetch from "@/hooks/useFetch";
 import { Alert } from "@mui/material";
 const BlogsPage = () => {
+  const [{ user }] = useUserContext();
+
   const { data, isLoading, error } = useFetch(
-    `http://localhost:3000/blogs/author/65f20eacad0a8597c5ad3364`
+    `http://localhost:3000/blogs/author/${user?.id}`
   );
 
   return (

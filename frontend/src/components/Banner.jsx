@@ -56,7 +56,7 @@ const Banner = ({ data, isLoading, error }) => {
               <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
                 <span>{bannerData?.category}</span>
               </div>
-              <h1 className=" font-Gotham-Bold text-3xl font-bold text-white">
+              <h1 className=" font-Gotham-Bold text-3xl font-bold text-white line-clamp-2">
                 {bannerData?.title}
               </h1>
               <p className=" text-sm font-Open-Sans text-white">

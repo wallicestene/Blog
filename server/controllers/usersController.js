@@ -17,6 +17,7 @@ const userLogin = (req, res) => {
         username: user.username,
         profile: user.profile,
         email,
+        id: user._id,
       };
       res.status(200).json({ ...userDetails, token });
     })
@@ -35,6 +36,7 @@ const userSignUp = (req, res) => {
         username,
         profile,
         email,
+        id: user._id,
       };
       res.status(200).json({ ...userDetails, token });
     })
