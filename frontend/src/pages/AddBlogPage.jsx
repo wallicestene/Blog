@@ -130,7 +130,7 @@ const AddBlogPage = () => {
           return toast.error("Something went wrong! Please try again later");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(err.message));
   };
   return (
     <div>
