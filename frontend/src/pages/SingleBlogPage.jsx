@@ -28,7 +28,7 @@ const SingleBlogPage = () => {
       )}
       {data && !isLoading && (
         <>
-          <div className=" lg:w-11/12 mx-auto ">
+          <div className="  ">
             <div className=" flex items-center lg:text-sm text-xs font-Gotham-Light my-2 hover:underline ">
               <KeyboardArrowLeft />
               <button onClick={() => history("/")}>Back to Home</button>
@@ -52,7 +52,7 @@ const SingleBlogPage = () => {
               <p>{moment(data?.createdAt).format("Do MMM YYYY")}</p>
             </div>
           </div>
-          <div className="singleMid lg:w-11/12 mx-auto w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
+          <div className="singleMid lg:w-11/12 bg-black w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
             <img
               src={`http://localhost:3000/uploads/${data.image}`}
               loading="lazy"
@@ -60,13 +60,11 @@ const SingleBlogPage = () => {
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="singleBottom lg:w-11/12 mx-auto ">
-            <article className=" prose-base font-Open-Sans prose-headings:font-semibold prose-h1:font-Gotham-Bold prose-headings:text-Secondary-950 prose-headings:first-letter:uppercase">
-              <div
-                className="ql-editor "
-                dangerouslySetInnerHTML={{ __html: data.body }}
-              />
-            </article>
+          <div className="singleBottom    ">
+            <article
+              dangerouslySetInnerHTML={{ __html: data?.body }}
+              className="ql-editor prose prose-sm md:prose-base  lg:prose-base font-Open-Sans prose-headings:font-semibold prose-headings:font-AvenirHeavy prose-headings:text-Secondary-950 prose-headings:first-letter:uppercase"
+            />
           </div>
         </>
       )}

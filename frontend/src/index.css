@@ -102,30 +102,17 @@ body::-webkit-scrollbar {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Avenir-heavy";
+  src: url("./assets/avenir-lt-std/AvenirLTStd-Heavy.otf");
+  font-weight: normal;
+  font-style: normal;
+}
 .imgContainer {
   height: 480px;
   clip-path: ellipse(98% 100% at 50% 0%);
 }
-/* .ql-editor h1 {
-  @apply text-4xl font-bold mb-4 font-Gotham-Bold;
-} */
-/* 
-.ql-editor h2 {
-  @apply text-2xl font-bold mb-1;
-}
 
-.ql-editor p {
-  @apply text-base;
-}
-.ql-editor li {
-  @apply text-[0.956rem];
-}
-.ql-editor {
-  @apply text-base space-y-3 ;
-} */
-/* .blogComp{
-  @apply text-balance line-clamp-[2] overflow-hidden whitespace-nowrap no-underline;
-} */
 /* For small devices (phones, 576px and up) */
 @media (min-width: 576px) {
   .imgContainer {

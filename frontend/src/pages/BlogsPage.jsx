@@ -1,9 +1,12 @@
 import BlogComponent from "@/components/BlogComponent";
+import { useUserContext } from "@/hooks/UserContext";
 import useFetch from "@/hooks/useFetch";
 import { Alert } from "@mui/material";
 const BlogsPage = () => {
+  const [{ user }] = useUserContext();
+
   const { data, isLoading, error } = useFetch(
-    `http://localhost:3000/blogs/author/65f20eacad0a8597c5ad3364`
+    `http://localhost:3000/blogs/author/${user?.id}`
   );
 
   return (
@@ -14,7 +17,7 @@ const BlogsPage = () => {
       {data.length > 0 && !isLoading && (
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {data.map((blog) => (
-            <BlogComponent blogData={blog} key={blog._id} />
+            <BlogComponent blogData={blog} key={blog._id} edit={true}/>
           ))}
         </div>
       )}

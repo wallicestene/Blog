@@ -50,6 +50,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         setError(err.response?.data.error);
+        console.log(err.response);
       });
   };
   if (redirect) {
