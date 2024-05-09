@@ -101,6 +101,7 @@ module.exports = {
         "Open-Sans": ["Avenir", " sans-serif"],
         "Gotham-Bold": ["Gotham", "sans-serif"],
         "Gotham-Light": ["Gotham-Light", "sans-serif"],
+        "AvenirHeavy": ["Avenir-heavy", "sans-serif"],
       },
       flex: {
         4: "0.4",

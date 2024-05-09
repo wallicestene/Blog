@@ -102,6 +102,12 @@ body::-webkit-scrollbar {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Avenir-heavy";
+  src: url("./assets/avenir-lt-std/AvenirLTStd-Heavy.otf");
+  font-weight: normal;
+  font-style: normal;
+}
 .imgContainer {
   height: 480px;
   clip-path: ellipse(98% 100% at 50% 0%);

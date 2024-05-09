@@ -63,7 +63,7 @@ const SingleBlogPage = () => {
           <div className="singleBottom    ">
             <article
               dangerouslySetInnerHTML={{ __html: data?.body }}
-              className="ql-editor prose prose-sm md:prose-base  lg:prose-base font-Open-Sans prose-headings:font-semibold prose-h1:font-Gotham-Bold prose-headings:text-Secondary-950 prose-headings:first-letter:uppercase"
+              className="ql-editor prose prose-sm md:prose-base  lg:prose-base font-Open-Sans prose-headings:font-semibold prose-headings:font-AvenirHeavy prose-headings:text-Secondary-950 prose-headings:first-letter:uppercase"
             />
           </div>
         </>
