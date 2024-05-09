@@ -5,10 +5,10 @@ import { Avatar } from "@mui/material";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const BlogComponent = ({ blogData }) => {
+const BlogComponent = ({ blogData, edit }) => {
   return (
-    <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] group">
-      <Link to={`/blogs/single-blog/${blogData?._id}`}>
+    <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+      <Link to={`/blogs/single-blog/${blogData?._id}`} className=" group">
         <img
           src={`http://localhost:3000/uploads/${blogData?.image}`}
           alt=""
@@ -43,6 +43,11 @@ const BlogComponent = ({ blogData }) => {
         </div>
         <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
       </Link>
+      {edit && (
+        <Link  className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]">
+          <span>Edit</span>
+        </Link>
+      )}
     </div>
   );
 };

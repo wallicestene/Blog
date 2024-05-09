@@ -11,6 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useUserContext } from "@/hooks/UserContext";
+import { Outlet, useParams } from "react-router-dom";
 
 const AddBlogPage = () => {
   const [{user}] = useUserContext()
@@ -120,6 +121,7 @@ const AddBlogPage = () => {
       </div>
     );
   };
+  const {id} = useParams()
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -270,6 +272,7 @@ const AddBlogPage = () => {
           </button>
         </form>
       </div>
+      <Outlet />
     </div>
   );
 };

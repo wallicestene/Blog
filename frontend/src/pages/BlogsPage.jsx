@@ -17,7 +17,7 @@ const BlogsPage = () => {
       {data.length > 0 && !isLoading && (
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {data.map((blog) => (
-            <BlogComponent blogData={blog} key={blog._id} />
+            <BlogComponent blogData={blog} key={blog._id} edit={true}/>
           ))}
         </div>
       )}
