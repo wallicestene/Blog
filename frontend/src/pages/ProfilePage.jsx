@@ -17,7 +17,7 @@ const ProfilePage = () => {
   }
   return (
     <div className=" grid place-items-center w-full h-full">
-      <div className="lg:w-1/2 w-full grid place-items-center border border-gray-300 shadow-lg shadow-gray-400 rounded-lg overflow-hidden font-Open-Sans">
+      <div className="lg:w-1/2 w-full grid place-items-center border border-gray-300 shadow-lg shadow-gray-400 rounded-lg overflow-hidden font-AvenirHeavy">
         <div className="relative flex items-center gap-2 bg-gradient-to-l from-rose-400 via-fuchsia-500 rounded-b-lg to-indigo-500 h-52 w-full">
           <img
             className=" absolute h-full w-full object-cover "

@@ -44,7 +44,7 @@ const BlogComponent = ({ blogData, edit }) => {
         <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
       </Link>
       {edit && (
-        <Link  className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]">
+        <Link to={`/myAccount/update-blog/${blogData?._id}`} className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]">
           <span>Edit</span>
         </Link>
       )}

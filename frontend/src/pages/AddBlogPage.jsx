@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Close, CloudUploadOutlined } from "@mui/icons-material";
 
 import ReactQuill from "react-quill";
@@ -7,14 +8,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useUserContext } from "@/hooks/UserContext";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import useFetch from "@/hooks/useFetch";
 
-const AddBlogPage = () => {
-  const [{user}] = useUserContext()
+const AddBlogPage = ({ id }) => {
+  const [{ user }] = useUserContext();
   const [blogDetails, setBlogDetails] = useState({
     author: user?.id,
     title: "",
@@ -36,7 +38,6 @@ const AddBlogPage = () => {
       return { ...prevDetails, category: options[index] };
     });
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -121,35 +122,62 @@ const AddBlogPage = () => {
       </div>
     );
   };
-  const {id} = useParams()
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !blogDetails.title ||
-      !blogDetails.author ||
-      !blogDetails.image ||
-      !blogDetails.image ||
-      !blogDetails.body ||
-      !blogDetails.category
-    ) {
-      return toast.error(" All fields must be filled!  ");
+    if (id) {
+      axios
+        .put(`http://localhost:3000/blogs/update/${id}`, blogDetails)
+        .then((response) => response.data)
+        .then((data) => {
+          if (data) {
+            return toast.success("Blog Updated successfully!");
+          } else {
+            return toast.error("Something went wrong! Please try again later");
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      if (
+        !blogDetails.title ||
+        !blogDetails.author ||
+        !blogDetails.image ||
+        !blogDetails.image ||
+        !blogDetails.body ||
+        !blogDetails.category
+      ) {
+        return toast.error(" All fields must be filled!  ");
+      }
+      axios
+        .post("http://localhost:3000/", blogDetails)
+        .then((response) => response.data)
+        .then((data) => {
+          if (data) {
+            return toast.success("Blog Added successfully!");
+          } else {
+            return toast.error("Something went wrong! Please try again later");
+          }
+        })
+        .catch((err) => toast.error(err.message));
     }
-    axios
-      .post("http://localhost:3000/", blogDetails)
-      .then((response) => response.data)
-      .then((data) => {
-        if (data) {
-          return toast.success("Blog Added successfully!");
-        } else {
-          return toast.error("Something went wrong! Please try again later");
-        }
-      })
-      .catch((err) => toast.error(err.message));
   };
+  const { data } = useFetch(`http://localhost:3000/blogs/${id}`);
+  useEffect(() => {
+    const newBlogDetails = () => {
+      setBlogDetails({
+        title: data?.title,
+        image: data?.image,
+        body: data?.body,
+        category: data?.category,
+      });
+    };
+    if (id) {
+      newBlogDetails();
+    }
+  }, [data?.body, data?.category, data?.image, data?.title, id, user?.author]);
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
-        Create a new Blog Post
+        {id ? "Edit" : "Create"} a new Blog Post
       </h1>
       <div>
         <form className=" space-y-5" onSubmit={handleSubmit}>

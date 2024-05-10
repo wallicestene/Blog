@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { useUserContext } from "./hooks/UserContext";
 import AccountPage from "./pages/AccountPage";
 import { Toaster } from "sonner";
+import AddBlogPage from "./pages/AddBlogPage";
+import UpdateBlogPage from "./pages/UpdateBlogPage";
 const App = () => {
   const [, dispatch] = useUserContext();
   useEffect(() => {
@@ -36,6 +38,7 @@ const App = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/myAccount" element={<AccountPage />} />
           <Route path="/myAccount/:subPage" element={<AccountPage />} />
+          <Route path="/myAccount/update-blog/:id" element={<UpdateBlogPage/>} />
         </Route>
       </Routes>
     </Router>
