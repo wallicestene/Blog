@@ -13,7 +13,6 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useUserContext } from "@/hooks/UserContext";
 import { Outlet } from "react-router-dom";
-import useFetch from "@/hooks/useFetch";
 
 const AddBlogPage = ({ id }) => {
   const [{ user }] = useUserContext();
@@ -160,20 +159,27 @@ const AddBlogPage = ({ id }) => {
         .catch((err) => toast.error(err.message));
     }
   };
-  const { data } = useFetch(`http://localhost:3000/blogs/${id}`);
   useEffect(() => {
     const newBlogDetails = () => {
-      setBlogDetails({
-        title: data?.title,
-        image: data?.image,
-        body: data?.body,
-        category: data?.category,
-      });
+      axios
+        .get(`http://localhost:3000/blogs/${id}`)
+        .then((response) => response.data)
+        .then((data) => {
+          setBlogDetails({
+            title: data?.title,
+            image: data?.image,
+            body: data?.body,
+            category: data?.category,
+          });
+        })
+        .catch((err) => {
+          toast.error(err.message + ". Try again!")
+        });
     };
     if (id) {
       newBlogDetails();
     }
-  }, [data?.body, data?.category, data?.image, data?.title, id, user?.author]);
+  }, [id]);
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
