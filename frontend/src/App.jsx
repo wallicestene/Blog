@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useUserContext } from "./hooks/UserContext";
 import AccountPage from "./pages/AccountPage";
 import { Toaster } from "sonner";
+import UpdateBlogPage from "./pages/UpdateBlogPage";
 const App = () => {
   const [, dispatch] = useUserContext();
   useEffect(() => {
@@ -27,7 +28,7 @@ const App = () => {
   }, [dispatch]);
   return (
     <Router>
-      <Toaster position="top-center" />
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index path="/" element={<HomePage />} />
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/myAccount" element={<AccountPage />} />
           <Route path="/myAccount/:subPage" element={<AccountPage />} />
+          <Route path="/myAccount/update-blog/:id" element={<UpdateBlogPage/>} />
         </Route>
       </Routes>
     </Router>
