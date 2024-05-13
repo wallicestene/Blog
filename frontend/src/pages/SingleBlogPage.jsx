@@ -1,9 +1,11 @@
 import useFetch from "@/hooks/useFetch";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { Alert, Avatar, CircularProgress } from "@mui/material";
+import axios from "axios";
 import moment from "moment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const SingleBlogPage = () => {
   const { id } = useParams();
@@ -42,12 +44,15 @@ const SingleBlogPage = () => {
             <div className=" flex items-center space-x-4 text-Secondary-900  text-[0.75rem] mt-3 font-Gotham-Light tracking-wide font-bold">
               <div className=" flex items-center gap-2">
                 <Avatar
+                  src={`http://localhost:3000/uploads/${data.author?.profile}`}
                   sx={{
                     width: "30px",
                     height: "30px",
                   }}
-                />
-                <p>John Doe</p>
+                >
+                  {data.author.username[0]}
+                </Avatar>
+                <p>{data.author.username}</p>
               </div>
               <p>{moment(data?.createdAt).format("Do MMM YYYY")}</p>
             </div>

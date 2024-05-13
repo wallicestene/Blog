@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { extractContent } from "@/hooks/extractContent";
+
 import { Avatar } from "@mui/material";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -26,14 +27,18 @@ const BlogComponent = ({ blogData, edit }) => {
           <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
             <div className=" flex items-center gap-1">
               <Avatar
+                src={`http://localhost:3000/uploads/${blogData.author?.profile}`}
                 sx={{
                   backgroundColor: "white ",
                   color: "black",
                   width: "30px",
                   height: "30px",
+                  textAlign: "center",
                 }}
-              />
-              <p>John Doe</p>
+              >
+                {blogData.author.username[0]}
+              </Avatar>
+              <p>{blogData.author.username}</p>
             </div>
             <p>{moment(blogData?.createdAt).format("Do MMM YYYY")}</p>
           </div>
@@ -44,7 +49,10 @@ const BlogComponent = ({ blogData, edit }) => {
         <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
       </Link>
       {edit && (
-        <Link to={`/myAccount/update-blog/${blogData?._id}`} className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]">
+        <Link
+          to={`/myAccount/update-blog/${blogData?._id}`}
+          className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]"
+        >
           <span>Edit</span>
         </Link>
       )}
