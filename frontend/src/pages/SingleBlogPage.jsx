@@ -31,7 +31,7 @@ const SingleBlogPage = () => {
           <div className="  ">
             <div className=" flex items-center lg:text-sm text-xs font-Gotham-Light my-2 hover:underline ">
               <KeyboardArrowLeft />
-              <button onClick={() => history("/")}>Back to Home</button>
+              <button onClick={() => history(-1)}>Back</button>
             </div>
             <div className=" bg-Primary-500 px-3 py-1 rounded-md first-letter:uppercase text-white font-Open-Sans inline-block tracking-wide">
               <span>{data?.category}</span>
