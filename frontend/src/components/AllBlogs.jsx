@@ -23,7 +23,7 @@ const AllBlogs = ({ data, isLoading, error }) => {
             .slice(0, 2)
             .map((skeleton) => <BlogSkeleton key={skeleton} />)}
 
-        {data?.length > 0 && !isLoading && (
+        {!error && !isLoading && (
           <>
             {data.slice(0, 2).map((blog, index) => (
               <BlogComponent key={index} blogData={blog} />
@@ -43,7 +43,7 @@ const AllBlogs = ({ data, isLoading, error }) => {
             .slice(2, skeletons.length)
             .map((skeleton) => <BlogSkeleton key={skeleton} />)}
 
-        {data?.length > 0 && !isLoading && (
+        {!error && !isLoading && (
           <>
             {data.slice(2, data.length).map((blog, index) => (
               <BlogComponent key={index} blogData={blog} />

@@ -24,12 +24,11 @@ const BlogComponent = ({ blogData, edit }) => {
           <p className=" text-sm font-Open-Sans">
             {extractContent(blogData?.body).substring(0, 100) + "..."}
           </p>
-          <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
+          <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light text-gray-400">
             <div className=" flex items-center gap-1">
               <Avatar
-                src={`http://localhost:3000/uploads/${blogData.author?.profile}`}
+                src={`http://localhost:3000/uploads/${blogData?.author?.profile}`}
                 sx={{
-                  backgroundColor: "white ",
                   color: "black",
                   width: "30px",
                   height: "30px",

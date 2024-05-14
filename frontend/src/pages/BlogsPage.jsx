@@ -11,10 +11,11 @@ const BlogsPage = () => {
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <div>
+        </div>}
       {error && <Alert severity="error">{error}</Alert>}
 
-      {data.length > 0 && !isLoading && (
+      {(!isLoading && !error) && (
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {data.map((blog) => (
             <BlogComponent blogData={blog} key={blog._id} edit={true}/>

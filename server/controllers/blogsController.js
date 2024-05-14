@@ -5,10 +5,10 @@ import path from "path";
 // get all blog posts
 const getAllBlogs = (req, res) => {
   Blogs.find()
-  .populate({
-    path: "author",
-    select: "username profile"
-  })
+    .populate({
+      path: "author",
+      select: "username profile",
+    })
     .then((blogs) => {
       res.status(200).json(blogs);
     })
@@ -54,10 +54,11 @@ const getOneBlog = (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Invalid id" });
   }
-  Blogs.findById(id).populate({
-    path: "author",
-    select: "username profile"
-  })
+  Blogs.findById(id)
+    .populate({
+      path: "author",
+      select: "username profile",
+    })
     .then((blog) => {
       if (!blog) {
         res.status(404).json({ error: "No blog found with that id" });
@@ -76,6 +77,10 @@ const getBlogByAuthor = (req, res) => {
     res.status(404).json({ error: "Invalid author" });
   }
   Blogs.find({ author })
+    .populate({
+      path: "author",
+      select: "username profile",
+    })
     .then((blogs) => {
       if (!blogs) {
         res.status(404).json({ error: "No blogs for this user were found." });
