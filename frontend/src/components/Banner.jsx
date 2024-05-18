@@ -21,7 +21,7 @@ const Banner = ({ data, isLoading, error }) => {
     }
   }, [data, data.length]);
   return (
-    <div className="relative h-[400px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-hidden mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
+    <div className="relative w-full h-full ">
       {isLoading && (
         <>
           <Skeleton className=" absolute top-0 left-0  w-full h-full bg-gray-900" />

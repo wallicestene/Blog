@@ -133,6 +133,10 @@ const searchBlog = (req, res) => {
   const { search } = req.query;
   const searchRegex = new RegExp(search, "i");
   Blogs.find({ $or: [{ title: searchRegex }, { category: searchRegex }] })
+    .populate({
+      path: "author",
+      select: "username profile",
+    })
     .then((results) => {
       if (!results) {
         res
@@ -155,5 +159,5 @@ export {
   deleteBlog,
   uploadMiddleWare,
   uploadBlogImage,
-  searchBlog
+  searchBlog,
 };

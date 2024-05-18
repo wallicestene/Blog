@@ -3,7 +3,18 @@ import { Search } from "lucide-react";
 // import HeroImage from "/HeroImage.png";
 import Banner from "./Banner";
 import ParticleComponent from "./ParticleComponent";
-const Hero = ({ data, isLoading, error }) => {
+import RecentBlogs from "./RecentBlogs";
+import SearchData from "./SearchData";
+const Hero = ({
+  data,
+  isLoading,
+  error,
+  setSearch,
+  search,
+  handleOnClick,
+  searchData,
+}) => {
+  console.log(search);
   return (
     <div>
       <section className="hero relative">
@@ -12,19 +23,24 @@ const Hero = ({ data, isLoading, error }) => {
           <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[20%]" />
         </div>
         <div className="absolute w-full grid place-items-center top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">
-          <div className=" h-full lg:w-1/2 w-11/12 rounded-md bg-gray-50 flex items-center flex-row-reverse p-1">
-            <div className=" px-3 py-1 text-center bg-Primary-500 rounded-md text-white cursor-pointer">
+          <form
+            onSubmit={handleOnClick}
+            className={`h-full lg:w-1/2 w-11/12 rounded-md bg-gray-50 flex items-center flex-row-reverse p-1`}
+          >
+            <button className=" px-3 py-1 text-center bg-Primary-500 rounded-md text-white cursor-pointer">
               <span>Search</span>
-            </div>
+            </button>
             <input
               className=" w-full h-full outline-none bg-transparent indent-2 border-none"
               type="text"
               placeholder="Search blog"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <div className=" p-1">
               <Search />
             </div>
-          </div>
+          </form>
           <div className="  text-white my-5 flex-wrap">
             <div>
               <ul className=" flex gap-x-5 flex-wrap">
@@ -40,7 +56,13 @@ const Hero = ({ data, isLoading, error }) => {
               </ul>
             </div>
           </div>
-          <Banner data={data} isLoading={isLoading} error={error} />
+          <div className="banner h-[405px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-y-scroll mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
+            {searchData.length > 0 ? (
+              <SearchData data={searchData} />
+            ) : (
+              <Banner data={data} isLoading={isLoading} error={error} />
+            )}
+          </div>
         </div>
       </section>
     </div>

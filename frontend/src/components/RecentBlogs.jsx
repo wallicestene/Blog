@@ -39,7 +39,7 @@ const RecentBlogs = ({ data, isLoading, error }) => {
       <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-5  gap-x-4  lg:w-11/12 w-full mx-auto">
         {isLoading &&
           skeletons.map((skeleton) => <BlogSkeleton key={skeleton} />)}
-        {data?.length > 0 && !isLoading && (
+        {!error && !isLoading && (
           <>
             {data?.slice(0, 3).map((blog, index) => (
               <BlogComponent key={index} blogData={blog} />

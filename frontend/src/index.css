@@ -71,7 +71,7 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
-.acc-right::-webkit-scrollbar,
+.acc-right::-webkit-scrollbar, .banner::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
 }
