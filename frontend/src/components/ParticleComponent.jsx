@@ -32,7 +32,7 @@ const ParticleComponent = () => {
       autoPlay: true,
       background: {
         color: {
-          value: "#ffffff",
+          value: "blue",
         },
         image: "url('https://particles.js.org/images/background3.jpg')",
         position: "50% 50%",

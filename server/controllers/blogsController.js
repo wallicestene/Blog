@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Blogs from "../models/blogsModel.js";
 import multer from "multer";
 import path from "path";
+import { query } from "express";
 // get all blog posts
 const getAllBlogs = (req, res) => {
   Blogs.find()
@@ -126,6 +127,24 @@ const deleteBlog = (req, res) => {
       res.status(500).json({ error: `Error deleting the blog. ${error}` });
     });
 };
+
+// search a blog by name or category
+const searchBlog = (req, res) => {
+  const { search } = req.query;
+  const searchRegex = new RegExp(search, "i");
+  Blogs.find({ $or: [{ title: searchRegex }, { category: searchRegex }] })
+    .then((results) => {
+      if (!results) {
+        res
+          .status(404)
+          .json({ error: "No blog found with that name or category." });
+      }
+      res.status(200).json(results);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: `Error searching the blog.` });
+    });
+};
 // export those functions
 export {
   getAllBlogs,
@@ -136,4 +155,5 @@ export {
   deleteBlog,
   uploadMiddleWare,
   uploadBlogImage,
+  searchBlog
 };
