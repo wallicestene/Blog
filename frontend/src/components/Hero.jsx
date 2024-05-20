@@ -3,7 +3,6 @@ import { Search } from "lucide-react";
 // import HeroImage from "/HeroImage.png";
 import Banner from "./Banner";
 import ParticleComponent from "./ParticleComponent";
-import RecentBlogs from "./RecentBlogs";
 import SearchData from "./SearchData";
 const Hero = ({
   data,
@@ -14,7 +13,6 @@ const Hero = ({
   handleOnClick,
   searchData,
 }) => {
-  console.log(search);
   return (
     <div>
       <section className="hero relative">

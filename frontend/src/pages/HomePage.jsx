@@ -13,7 +13,6 @@ const HomePage = () => {
   const [searchError, setSearchError] = useState(null);
   const { data, isLoading, error } = useFetch("http://localhost:3000/");
 
-  console.log(searchData);
   useEffect(() => {
     setLoading(isLoading);
     setSearchError(error);
