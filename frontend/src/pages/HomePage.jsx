@@ -10,7 +10,7 @@ const HomePage = () => {
   const [searchData, setSearchData] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [searchError, setSearchError] = useState(null);
+  const [, setSearchError] = useState(null);
   const { data, isLoading, error } = useFetch("http://localhost:3000/");
 
   useEffect(() => {

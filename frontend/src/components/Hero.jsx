@@ -25,9 +25,10 @@ const Hero = ({
             onSubmit={handleOnClick}
             className={`h-full lg:w-1/2 w-11/12 rounded-md bg-gray-50 flex items-center flex-row-reverse p-1`}
           >
-            <button className=" px-3 py-1 text-center bg-Primary-500 rounded-md text-white cursor-pointer">
+            <button className="bg-Primary-500 hover:bg-Primary-700 text-white font-bold py-2 px-4 rounded">
               <span>Search</span>
             </button>
+
             <input
               className=" w-full h-full outline-none bg-transparent indent-2 border-none"
               type="text"
@@ -55,7 +56,7 @@ const Hero = ({
             </div>
           </div>
           <div className="banner h-[405px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-y-scroll mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
-            {searchData.length > 0 ? (
+            {search && searchData.length > 0 ? (
               <SearchData data={searchData} />
             ) : (
               <Banner data={data} isLoading={isLoading} error={error} />

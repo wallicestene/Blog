@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
+import { ArrowForward } from "@mui/icons-material";
 import { Alert } from "@mui/material";
 import { useState } from "react";
 import BlogSkeleton from "./BlogSkeleton";
@@ -9,11 +10,11 @@ const SearchData = ({ data, isLoading, error }) => {
   const [skeletons] = useState([1, 2, 3]);
   return (
     <div className="relative w-full h-full">
-      <div>
-        <h2 className="absolute top-2 left-2 z-20 text-white bg-Primary-500 p-2 rounded-md m-2 text-xl font-bold font-Gotham-Bold">
-          Search Results
-        </h2>
-      </div>
+        <div className=" absolute top-2 left-2 z-20 text-white bg-Primary-500 p-2 rounded-md m-2 text-xl font-bold font-Gotham-Bold" >
+            <h2 >
+                Search Results
+            </h2>
+        </div>
       {error && (
         <div>
           <Alert severity="error">{error}</Alert>
