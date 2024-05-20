@@ -183,7 +183,7 @@ const AddBlogPage = ({ id }) => {
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
-        {id ? "Edit" : "Create"} a new Blog Post
+        {id ? "Edit Blog Post" : "Create a new Blog Post"} 
       </h1>
       <div>
         <form className=" space-y-5" onSubmit={handleSubmit}>
@@ -254,7 +254,6 @@ const AddBlogPage = ({ id }) => {
               modules={modules}
               value={blogDetails.body}
               onChange={handleBodyChange}
-              // style={{ height: "20rem", overflow: "hidden",border: "1px solid #dcd7d7" }}
               className=" h-80 overflow-y-hidden border font-Open-Sans"
             />
           </div>
