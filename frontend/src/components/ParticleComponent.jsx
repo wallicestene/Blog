@@ -363,7 +363,7 @@ const ParticleComponent = () => {
         size: {
           value: {
             min: 1,
-            max: 30,
+            max: 60,
           },
           animation: {
             count: 0,
