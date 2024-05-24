@@ -2,7 +2,23 @@ import mongoose from "mongoose";
 import Blogs from "../models/blogsModel.js";
 import multer from "multer";
 import path from "path";
-import { query } from "express";
+import dotenv from "dotenv";
+import { PutObjectCommand, S3, S3Client } from "@aws-sdk/client-s3";
+import fs from "fs";
+dotenv.config();
+
+// s3 bucket details
+const bucketName = process.env.BUCKET_NAME;
+const bucketRegion = process.env.BUCKET_REGION;
+const accessKey = process.env.ACCESS_KEY;
+const secretKey = process.env.SECRET_KEY;
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey,
+  },
+  region: bucketRegion,
+});
 // get all blog posts
 const getAllBlogs = (req, res) => {
   Blogs.find()
@@ -46,8 +62,26 @@ const storage = multer.diskStorage({
 });
 const uploadMiddleWare = multer({ storage });
 const uploadBlogImage = (req, res) => {
-  const { filename } = req.file;
-  res.status(200).json(filename);
+  const { filename, path, mimetype } = req.file;
+
+  const image = fs.readFileSync(path);
+  const params = {
+    Bucket: bucketName,
+    Key: filename,
+    Body: image,
+    ContentType: mimetype,
+  };
+  const command = new PutObjectCommand(params);
+  s3.send(command, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      return;
+    }
+  });
+  res
+    .status(200)
+    .json(`https://bookify-app-bucket.s3.amazonaws.com/${filename}`);
 };
 // get one blog by id
 const getOneBlog = (req, res) => {
