@@ -11,7 +11,7 @@ const BlogComponent = ({ blogData, edit }) => {
     <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <Link to={`/blogs/single-blog/${blogData?._id}`} className=" group">
         <img
-          src={`http://localhost:3000/uploads/${blogData?.image}`}
+          src={blogData?.image}
           alt=""
           loading="lazy"
           className=" object-cover w-full h-full transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500 "
@@ -27,7 +27,7 @@ const BlogComponent = ({ blogData, edit }) => {
           <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light text-gray-400">
             <div className=" flex items-center gap-1">
               <Avatar
-                src={`http://localhost:3000/uploads/${blogData?.author?.profile}`}
+                src={blogData?.author?.profile}
                 sx={{
                   color: "black",
                   width: "30px",

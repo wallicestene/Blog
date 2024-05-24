@@ -210,7 +210,7 @@ const AddBlogPage = ({ id }) => {
               <div className="relative w-fit">
                 {" "}
                 <img
-                  src={`http://localhost:3000/uploads/${blogDetails?.image}`}
+                  src={blogDetails?.image}
                   alt="Blog image"
                   className=" h-[50vh] object-contain"
                 />

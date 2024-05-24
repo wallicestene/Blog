@@ -47,7 +47,7 @@ const Banner = ({ data, isLoading, error }) => {
         <div className="relative h-full w-full overflow-hidden  group">
           <Link to={`/blogs/single-blog/${bannerData?._id}`}>
             <img
-              src={`http://localhost:3000/uploads/${bannerData?.image}`}
+              src={bannerData?.image}
               alt=""
               className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"
@@ -67,7 +67,7 @@ const Banner = ({ data, isLoading, error }) => {
                 <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light text-gray-400">
                   <div className=" flex items-center gap-1">
                     <Avatar
-                      src={`http://localhost:3000/uploads/${bannerData.author?.profile}`}
+                      src={bannerData.author?.profile}
                       sx={{
                         color: "black",
                         width: "30px",

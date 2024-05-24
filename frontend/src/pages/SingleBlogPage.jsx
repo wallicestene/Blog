@@ -44,7 +44,7 @@ const SingleBlogPage = () => {
             <div className=" flex items-center space-x-4 text-Secondary-900  text-[0.75rem] mt-3 font-Gotham-Light tracking-wide font-bold">
               <div className=" flex items-center gap-2">
                 <Avatar
-                  src={`http://localhost:3000/uploads/${data.author?.profile}`}
+                  src={data.author?.profile}
                   sx={{
                     width: "30px",
                     height: "30px",
@@ -59,7 +59,7 @@ const SingleBlogPage = () => {
           </div>
           <div className="singleMid lg:w-11/12 bg-black w-full lg:h-[80vh] h-[50vh] overflow-hidden rounded">
             <img
-              src={`http://localhost:3000/uploads/${data.image}`}
+              src={data.image}
               loading="lazy"
               alt=""
               className="w-full h-full object-cover object-center"
