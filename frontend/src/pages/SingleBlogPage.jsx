@@ -1,11 +1,10 @@
 import useFetch from "@/hooks/useFetch";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { Alert, Avatar, CircularProgress } from "@mui/material";
-import axios from "axios";
+
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "sonner";
 
 const SingleBlogPage = () => {
   const { id } = useParams();
