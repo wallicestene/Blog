@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { extractContent } from "@/hooks/extractContent";
+
 import { Avatar } from "@mui/material";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ const BlogComponent = ({ blogData, edit }) => {
     <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
       <Link to={`/blogs/single-blog/${blogData?._id}`} className=" group">
         <img
-          src={`http://localhost:3000/uploads/${blogData?.image}`}
+          src={blogData?.image}
           alt=""
           loading="lazy"
           className=" object-cover w-full h-full transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500 "
@@ -23,17 +24,20 @@ const BlogComponent = ({ blogData, edit }) => {
           <p className=" text-sm font-Open-Sans">
             {extractContent(blogData?.body).substring(0, 100) + "..."}
           </p>
-          <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light">
+          <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light text-gray-400">
             <div className=" flex items-center gap-1">
               <Avatar
+                src={blogData?.author?.profile}
                 sx={{
-                  backgroundColor: "white ",
                   color: "black",
                   width: "30px",
                   height: "30px",
+                  textAlign: "center",
                 }}
-              />
-              <p>John Doe</p>
+              >
+                {blogData.author.username[0]}
+              </Avatar>
+              <p>{blogData.author.username}</p>
             </div>
             <p>{moment(blogData?.createdAt).format("Do MMM YYYY")}</p>
           </div>
@@ -44,7 +48,10 @@ const BlogComponent = ({ blogData, edit }) => {
         <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[12%]" />
       </Link>
       {edit && (
-        <Link to={`/myAccount/update-blog/${blogData?._id}`} className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]">
+        <Link
+          to={`/myAccount/update-blog/${blogData?._id}`}
+          className=" absolute z-20 top-2 right-2 bg-Primary-100/80 p-2 bg-Primary-500 cursor-pointer rounded-md text-white font-AvenirHeavy inline-block tracking-wider text-[0.8rem]"
+        >
           <span>Edit</span>
         </Link>
       )}

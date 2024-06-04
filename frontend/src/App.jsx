@@ -9,6 +9,7 @@ import { useUserContext } from "./hooks/UserContext";
 import AccountPage from "./pages/AccountPage";
 import { Toaster } from "sonner";
 import UpdateBlogPage from "./pages/UpdateBlogPage";
+import NotFound from "./pages/NotFound";
 const App = () => {
   const [, dispatch] = useUserContext();
   useEffect(() => {
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/myAccount" element={<AccountPage />} />
           <Route path="/myAccount/:subPage" element={<AccountPage />} />
           <Route path="/myAccount/update-blog/:id" element={<UpdateBlogPage/>} />
+          <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>
     </Router>

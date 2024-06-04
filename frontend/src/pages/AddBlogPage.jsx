@@ -183,7 +183,7 @@ const AddBlogPage = ({ id }) => {
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
-        {id ? "Edit" : "Create"} a new Blog Post
+        {id ? "Edit Blog Post" : "Create a new Blog Post"} 
       </h1>
       <div>
         <form className=" space-y-5" onSubmit={handleSubmit}>
@@ -210,7 +210,7 @@ const AddBlogPage = ({ id }) => {
               <div className="relative w-fit">
                 {" "}
                 <img
-                  src={`http://localhost:3000/uploads/${blogDetails?.image}`}
+                  src={blogDetails?.image}
                   alt="Blog image"
                   className=" h-[50vh] object-contain"
                 />
@@ -254,7 +254,6 @@ const AddBlogPage = ({ id }) => {
               modules={modules}
               value={blogDetails.body}
               onChange={handleBodyChange}
-              // style={{ height: "20rem", overflow: "hidden",border: "1px solid #dcd7d7" }}
               className=" h-80 overflow-y-hidden border font-Open-Sans"
             />
           </div>
@@ -301,7 +300,7 @@ const AddBlogPage = ({ id }) => {
               ))}
             </Menu>
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-Primary-500 hover:bg-Primary-700 text-white font-bold py-2 px-4 rounded">
             Submit
           </button>
         </form>

@@ -50,7 +50,7 @@ export default function AccountMenu() {
                   height: "2.25rem",
                   width: "2.25rem",
                 }}
-                src={`http://localhost:3000/uploads/${user.profile}`}
+                src={user.profile}
               />
             </IconButton>
           </Tooltip>
@@ -96,8 +96,7 @@ export default function AccountMenu() {
       >
         <Link to={"/myAccount"}>
           <MenuItem onClick={handleClose}>
-            <Avatar src={`http://localhost:3000/uploads/${user.profile}`} /> My
-            account
+            <Avatar src={user.profile} /> My account
           </MenuItem>
         </Link>
         <Divider />

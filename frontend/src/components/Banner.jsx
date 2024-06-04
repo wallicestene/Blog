@@ -21,7 +21,7 @@ const Banner = ({ data, isLoading, error }) => {
     }
   }, [data, data.length]);
   return (
-    <div className="relative h-[400px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-hidden mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
+    <div className="relative w-full h-full ">
       {isLoading && (
         <>
           <Skeleton className=" absolute top-0 left-0  w-full h-full bg-gray-900" />
@@ -43,11 +43,11 @@ const Banner = ({ data, isLoading, error }) => {
           <Alert severity="error">{error}</Alert>
         </div>
       )}
-      {data?.length > 0 && !isLoading && (
+      {bannerData && !isLoading && (
         <div className="relative h-full w-full overflow-hidden  group">
           <Link to={`/blogs/single-blog/${bannerData?._id}`}>
             <img
-              src={`http://localhost:3000/uploads/${bannerData?.image}`}
+              src={bannerData?.image}
               alt=""
               className=" object-cover h-full w-full object-center transition-transform group-hover:scale-125 delay-50 ease-in-out duration-500"
               loading="lazy"
@@ -63,16 +63,25 @@ const Banner = ({ data, isLoading, error }) => {
                 {extractContent(bannerData?.body).substring(0, 200) + "..."}
               </p>
 
-              <div className=" flex items-center gap-x-4 text-white font-Gotham-Light text-sm">
-                <Avatar
-                  sx={{
-                    backgroundColor: "white ",
-                    color: "black",
-                  }}
-                />
-                <p>John Doe</p>
-                <p>{moment(bannerData?.createdAt).format("Do MMM YYYY")}</p>
-              </div>
+              {bannerData && (
+                <div className=" flex items-center justify-between text-[0.75rem] mt-3 font-Gotham-Light text-gray-400">
+                  <div className=" flex items-center gap-1">
+                    <Avatar
+                      src={bannerData.author?.profile}
+                      sx={{
+                        color: "black",
+                        width: "30px",
+                        height: "30px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {bannerData.author.username[0]}
+                    </Avatar>
+                    <p>{bannerData.author.username}</p>
+                  </div>
+                  <p>{moment(bannerData?.createdAt).format("Do MMM YYYY")}</p>
+                </div>
+              )}
             </div>
 
             <div className=" absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[14%]" />
