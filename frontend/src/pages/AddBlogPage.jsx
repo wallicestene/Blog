@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useUserContext } from "@/hooks/UserContext";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 const AddBlogPage = ({ id }) => {
   const [{ user }] = useUserContext();
@@ -25,6 +25,8 @@ const AddBlogPage = ({ id }) => {
   });
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [redirect, setRedirect] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -129,6 +131,7 @@ const AddBlogPage = ({ id }) => {
         .then((response) => response.data)
         .then((data) => {
           if (data) {
+            setRedirect(true);
             return toast.success("Blog Updated successfully!");
           } else {
             return toast.error("Something went wrong! Please try again later");
@@ -151,6 +154,7 @@ const AddBlogPage = ({ id }) => {
         .then((response) => response.data)
         .then((data) => {
           if (data) {
+            setRedirect(true);
             return toast.success("Blog Added successfully!");
           } else {
             return toast.error("Something went wrong! Please try again later");
@@ -180,6 +184,9 @@ const AddBlogPage = ({ id }) => {
       newBlogDetails();
     }
   }, [id]);
+  if (redirect) {
+    return <Navigate to={"/myAccount/blogs"} />;
+  }
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
