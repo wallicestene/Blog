@@ -144,7 +144,7 @@ const AddBlogPage = ({ id }) => {
         !blogDetails.body ||
         !blogDetails.category
       ) {
-        return toast.error(" All fields must be filled!  ");
+        return toast.error(" All fields must be filled!");
       }
       axios
         .post("http://localhost:3000/", blogDetails)
@@ -173,7 +173,7 @@ const AddBlogPage = ({ id }) => {
           });
         })
         .catch((err) => {
-          toast.error(err.message + ". Try again!")
+          toast.error(err.message + ". Try again!");
         });
     };
     if (id) {
@@ -183,7 +183,7 @@ const AddBlogPage = ({ id }) => {
   return (
     <div>
       <h1 className="text-center font-Open-Sans text-lg">
-        {id ? "Edit Blog Post" : "Create a new Blog Post"} 
+        {id ? "Edit Blog Post" : "Create a new Blog Post"}
       </h1>
       <div>
         <form className=" space-y-5" onSubmit={handleSubmit}>
@@ -300,8 +300,18 @@ const AddBlogPage = ({ id }) => {
               ))}
             </Menu>
           </div>
-          <button className="bg-Primary-500 hover:bg-Primary-700 text-white font-bold py-2 px-4 rounded">
-            Submit
+          <button className="relative inline-block text-lg group">
+            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-Secondary-950 transition-colors duration-300 ease-out border-2 border-Secondary-950 rounded-lg group-hover:text-white">
+              <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-Primary-50"></span>
+              <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-Secondary-950 group-hover:-rotate-180 ease"></span>
+              <span className="relative">
+                {id ? "Update" : "Create"} Blog Post
+              </span>
+            </span>
+            <span
+              className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-Secondary-950 rounded-lg group-hover:mb-0 group-hover:mr-0"
+              data-rounded="rounded-lg"
+            ></span>
           </button>
         </form>
       </div>
