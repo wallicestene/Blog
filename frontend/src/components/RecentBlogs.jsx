@@ -6,9 +6,9 @@ import { ArrowForward } from "@mui/icons-material";
 import BlogComponent from "./BlogComponent";
 import { Alert } from "@mui/material";
 import BlogSkeleton from "./BlogSkeleton";
-import { memo, useState } from "react";
+import {useState } from "react";
 
-const RecentBlogs = memo(({ data, isLoading, error }) => {
+const RecentBlogs = ({ data, isLoading, error }) => {
   const [skeletons] = useState([1, 2, 3]);
   return (
     <div className=" lg:mt-[240px] my md:mt-[370] mt-[360px] lg:w-[75%] md:w-[90%] w-full p-5 mx-auto ">
@@ -50,6 +50,6 @@ const RecentBlogs = memo(({ data, isLoading, error }) => {
       </div>
     </div>
   );
-});
+}
 
 export default RecentBlogs;

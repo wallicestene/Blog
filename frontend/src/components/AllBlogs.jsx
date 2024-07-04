@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import { memo, useState } from "react";
+import {useState } from "react";
 import BlogComponent from "./BlogComponent";
 import BlogSkeleton from "./BlogSkeleton";
 import { Alert } from "@mui/material";
 
-const AllBlogs = memo(({ data, isLoading, error }) => {
+const AllBlogs = ({ data, isLoading, error }) => {
   const [skeletons] = useState([1, 2, 3, 4, 5]);
   return (
     <div className="lg:w-[75%] md:w-[90%] w-full p-5 mx-auto space-y-4">
@@ -54,6 +54,6 @@ const AllBlogs = memo(({ data, isLoading, error }) => {
       </div>
     </div>
   );
-});
+}
 
 export default AllBlogs;
