@@ -44,13 +44,13 @@ export default function AccountMenu() {
               aria-expanded={open ? "true" : undefined}
             >
               <Avatar
+                src={`http://localhost:3000/uploads/${user?.profile}`}
                 sx={{
                   backgroundColor: "white",
                   color: "black",
                   height: "2.25rem",
                   width: "2.25rem",
                 }}
-                src={user.profile}
               />
             </IconButton>
           </Tooltip>

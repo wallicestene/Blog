@@ -27,7 +27,7 @@ const SingleBlogPage = () => {
           <CircularProgress />
         </div>
       )}
-      {data && !isLoading && (
+      {(data && !isLoading )&& (
         <>
           <div className="  ">
             <div className=" flex items-center lg:text-sm text-xs font-Gotham-Light my-2 hover:underline ">

@@ -1,6 +1,7 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import {useState } from "react";
 import BlogComponent from "./BlogComponent";
 import BlogSkeleton from "./BlogSkeleton";
 import { Alert } from "@mui/material";
@@ -53,6 +54,6 @@ const AllBlogs = ({ data, isLoading, error }) => {
       </div>
     </div>
   );
-};
+}
 
 export default AllBlogs;

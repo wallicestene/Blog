@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 
@@ -5,7 +6,7 @@ import { ArrowForward } from "@mui/icons-material";
 import BlogComponent from "./BlogComponent";
 import { Alert } from "@mui/material";
 import BlogSkeleton from "./BlogSkeleton";
-import { useState } from "react";
+import {useState } from "react";
 
 const RecentBlogs = ({ data, isLoading, error }) => {
   const [skeletons] = useState([1, 2, 3]);
@@ -49,6 +50,6 @@ const RecentBlogs = ({ data, isLoading, error }) => {
       </div>
     </div>
   );
-};
+}
 
 export default RecentBlogs;
