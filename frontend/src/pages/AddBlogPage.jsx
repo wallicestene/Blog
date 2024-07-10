@@ -13,6 +13,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useUserContext } from "@/hooks/UserContext";
 import { Navigate, Outlet } from "react-router-dom";
+import { apiUrl } from "@/components/utils/apiConfig";
 
 const AddBlogPage = ({ id }) => {
   const [{ user }] = useUserContext();
@@ -95,7 +96,7 @@ const AddBlogPage = ({ id }) => {
     let formData = new FormData();
     formData.append("image", files[0]);
     axios
-      .post("http://localhost:3000/blogs/image-upload", formData)
+      .post(`${apiUrl}blogs/image-upload`, formData)
       .then((response) => response.data)
       .then((image) =>
         setBlogDetails((prevDetails) => {
@@ -127,7 +128,7 @@ const AddBlogPage = ({ id }) => {
     e.preventDefault();
     if (id) {
       axios
-        .put(`http://localhost:3000/blogs/update/${id}`, blogDetails)
+        .put(`${apiUrl}blogs/update/${id}`, blogDetails)
         .then((response) => response.data)
         .then((data) => {
           if (data) {
@@ -150,7 +151,7 @@ const AddBlogPage = ({ id }) => {
         return toast.error(" All fields must be filled!");
       }
       axios
-        .post("http://localhost:3000/", blogDetails)
+        .post(`${apiUrl}`, blogDetails)
         .then((response) => response.data)
         .then((data) => {
           if (data) {
@@ -166,7 +167,7 @@ const AddBlogPage = ({ id }) => {
   useEffect(() => {
     const newBlogDetails = () => {
       axios
-        .get(`http://localhost:3000/blogs/${id}`)
+        .get(`${apiUrl}blogs/${id}`)
         .then((response) => response.data)
         .then((data) => {
           setBlogDetails({
