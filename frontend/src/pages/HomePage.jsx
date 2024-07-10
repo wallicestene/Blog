@@ -2,6 +2,7 @@
 import AllBlogs from "@/components/AllBlogs";
 import Hero from "@/components/Hero";
 import RecentBlogs from "@/components/RecentBlogs";
+import { apiUrl } from "@/components/utils/apiConfig";
 import useFetch from "@/hooks/useFetch";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
@@ -12,18 +13,19 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [, setSearchError] = useState(null);
-  const { data, isLoading, error } = useFetch("http://localhost:3000/");
+  const { data, isLoading, error } = useFetch(`${apiUrl}`);
 
-  console.log(data);
   useEffect(() => {
     setLoading(isLoading);
     setSearchError(error);
   }, [isLoading, error]);
+
+  
   const handleSearch = useCallback((e) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .get(`http://localhost:3000/blogs/search/blog/?search=${search}`)
+      .get(`${apiUrl}blogs/search/blog/?search=${search}`)
       .then((response) => response.data)
       .then((data) => {
         setSearchData(data);

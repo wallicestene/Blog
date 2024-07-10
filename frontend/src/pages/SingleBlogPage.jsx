@@ -1,3 +1,4 @@
+import { apiUrl } from "@/components/utils/apiConfig";
 import useFetch from "@/hooks/useFetch";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { Alert, Avatar, CircularProgress } from "@mui/material";
@@ -10,7 +11,7 @@ const SingleBlogPage = () => {
   const { id } = useParams();
   const history = useNavigate();
   const { data, isLoading, error } = useFetch(
-    `http://localhost:3000/blogs/${id}`
+    `${apiUrl}blogs/${id}`
   );
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,7 +28,7 @@ const SingleBlogPage = () => {
           <CircularProgress />
         </div>
       )}
-      {(data && !isLoading )&& (
+      {data && !isLoading && (
         <>
           <div className="  ">
             <div className=" flex items-center lg:text-sm text-xs font-Gotham-Light my-2 hover:underline ">
