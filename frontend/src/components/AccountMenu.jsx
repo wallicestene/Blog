@@ -12,6 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useUserContext } from "@/hooks/UserContext";
 import { Link } from "react-router-dom";
+import { apiUrl } from "./utils/apiConfig";
 
 export default function AccountMenu() {
   const [{ user }, dispatch] = useUserContext();
@@ -44,7 +45,7 @@ export default function AccountMenu() {
               aria-expanded={open ? "true" : undefined}
             >
               <Avatar
-                src={`http://localhost:3000/uploads/${user?.profile}`}
+                src={`${apiUrl}uploads/${user?.profile}`}
                 sx={{
                   backgroundColor: "white",
                   color: "black",

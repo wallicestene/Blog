@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
+import { apiUrl } from "@/components/utils/apiConfig";
 import { useUserContext } from "@/hooks/UserContext";
 import { Add } from "@mui/icons-material";
 import { Alert, Avatar } from "@mui/material";
@@ -29,7 +30,7 @@ const SignupPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/signUp", {
+      .post(`${apiUrl}signUp`, {
         ...userDetails,
       })
       .then((response) => response.data)
@@ -54,7 +55,7 @@ const SignupPage = () => {
     const formData = new FormData();
     formData.append("image", files[0]);
     axios
-      .post("http://localhost:3000/blogs/image-upload", formData)
+      .post(`${apiUrl}blogs/image-upload`, formData)
       .then((response) => response.data)
       .then((image) => {
         setUserDetails((prevDetails) => {
@@ -104,7 +105,7 @@ const SignupPage = () => {
                   backgroundColor: "white",
                   color: "black",
                 }}
-                src={`http://localhost:3000/uploads/${userDetails.profile}`}
+                src={`${apiUrl}uploads/${userDetails.profile}`}
               />
               <label className="  absolute bottom-0 -right-0 z-10 bg-white rounded-full h-5 w-5 grid place-items-center cursor-pointer">
                 <input

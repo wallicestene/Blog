@@ -1,11 +1,12 @@
 /* eslint-disable react/display-name */
 import AllBlogs from "@/components/AllBlogs";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import RecentBlogs from "@/components/RecentBlogs";
 import { apiUrl } from "@/components/utils/apiConfig";
 import useFetch from "@/hooks/useFetch";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const HomePage = () => {
@@ -20,8 +21,7 @@ const HomePage = () => {
     setSearchError(error);
   }, [isLoading, error]);
 
-  
-  const handleSearch = useCallback((e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     setLoading(true);
     axios
@@ -37,7 +37,7 @@ const HomePage = () => {
       })
       .catch((err) => setSearchError(err.message))
       .finally(() => setLoading(false));
-  });
+  };
   return (
     <div className=" mt-[49px]">
       <Hero
@@ -56,6 +56,7 @@ const HomePage = () => {
       )}
 
       <AllBlogs data={data} isLoading={isLoading} error={error} />
+      <Footer />
     </div>
   );
 };

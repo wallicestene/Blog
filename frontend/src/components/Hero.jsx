@@ -3,10 +3,9 @@
 import { Search } from "lucide-react";
 import ParticleComponent from "./ParticleComponent";
 import SearchData from "./SearchData";
-import { memo } from "react";
 import Banner from "./Banner";
 
-const Hero = memo(
+const Hero = 
   ({
     data,
     isLoading,
@@ -75,6 +74,5 @@ const Hero = memo(
       </div>
     );
   }
-);
 
 export default Hero;

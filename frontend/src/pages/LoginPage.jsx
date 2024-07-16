@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
+import { apiUrl } from "@/components/utils/apiConfig";
 import { useUserContext } from "@/hooks/UserContext";
 import { Alert } from "@mui/material";
 import axios from "axios";
@@ -28,7 +29,7 @@ const LoginPage = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/logIn",
+        `${apiUrl}logIn`,
         {
           ...userDetails,
         },
