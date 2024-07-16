@@ -18,11 +18,12 @@ const Hero =
     if (!data || data.length === 0) {
       return;
     }
+  console.log(data)
     return (
       <div>
         <section className="hero relative">
           <div className="imgContainer relative overflow-hidden">
-            <ParticleComponent />
+            <ParticleComponent image = {data[0]?.image} />
             <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[20%]" />
           </div>
           <div className="absolute w-full grid place-items-center top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">

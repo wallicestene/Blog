@@ -5,7 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
-const ParticleComponent = () => {
+const ParticleComponent = ({image}) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -34,7 +34,7 @@ const ParticleComponent = () => {
         color: {
           value: "blue",
         },
-        image: "url('https://particles.js.org/images/background3.jpg')",
+        image: `url(${image})`,
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",
