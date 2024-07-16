@@ -1,1 +1,1 @@
-export const apiUrl = "http://13.49.145.14:3000/"
+export const apiUrl = "https://blog-mgrd.onrender.com/"

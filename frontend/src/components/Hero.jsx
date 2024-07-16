@@ -5,25 +5,23 @@ import ParticleComponent from "./ParticleComponent";
 import SearchData from "./SearchData";
 import Banner from "./Banner";
 
-const Hero = 
-  ({
-    data,
-    isLoading,
-    error,
-    setSearch,
-    search,
-    handleOnClick,
-    searchData,
-  }) => {
-    if (!data || data.length === 0) {
-      return;
-    }
-  console.log(data)
-    return (
-      <div>
+const Hero = ({
+  data,
+  isLoading,
+  error,
+  setSearch,
+  search,
+  handleOnClick,
+  searchData,
+}) => {
+  return (
+    <div>
+      {!data || data.length === 0 ? (
+        ""
+      ) : (
         <section className="hero relative">
           <div className="imgContainer relative overflow-hidden">
-            <ParticleComponent image = {data[0]?.image} />
+            <ParticleComponent image={data[0]?.image} />
             <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-950 from-0% via-slate-900 via-[20%]" />
           </div>
           <div className="absolute w-full grid place-items-center top-1/2 left-1/2 -translate-x-1/2 font-Open-Sans">
@@ -64,16 +62,18 @@ const Hero =
               </div>
             </div>
             <div className="banner h-[405px] lg:w-[900px] md:w-11/12 w-full rounded-2xl overflow-y-scroll mb-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 bg-white">
-              {search && searchData.length > 0 ? (
+              {search && searchData.length > 0 && (
                 <SearchData data={searchData} />
-              ) : (
+              )}
+              {data && !isLoading && (
                 <Banner data={data} isLoading={isLoading} error={error} />
               )}
             </div>
           </div>
         </section>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
+};
 
 export default Hero;

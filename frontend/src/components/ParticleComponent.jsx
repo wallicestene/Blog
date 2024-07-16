@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
@@ -5,7 +6,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
-const ParticleComponent = ({image}) => {
+const ParticleComponent = ({ image }) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -34,7 +35,9 @@ const ParticleComponent = ({image}) => {
         color: {
           value: "blue",
         },
-        image: `url(${image})`,
+        image: `url(${
+          image || "https://particles.js.org/images/background3.jpg"
+        })`,
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",
