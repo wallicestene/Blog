@@ -5,7 +5,6 @@ import ParticleComponent from "./ParticleComponent";
 import SearchData from "./SearchData";
 import { memo } from "react";
 import Banner from "./Banner";
-import { Alert } from "@mui/material";
 
 const Hero = memo(
   ({

@@ -98,11 +98,12 @@ const AddBlogPage = ({ id }) => {
     axios
       .post(`${apiUrl}blogs/image-upload`, formData)
       .then((response) => response.data)
-      .then((image) =>
+      .then((image) => {
+        console.log(image);
         setBlogDetails((prevDetails) => {
           return { ...prevDetails, image: image };
-        })
-      )
+        });
+      })
       .catch((err) => console.log(err));
   };
 
